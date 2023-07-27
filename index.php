@@ -79,7 +79,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="section-heading">
-              <h2>Sản phẩm <em>Nổi bật</em></h2>
+              <h2>iPhone nào phù hợp với bạn?</h2>
               <span>Aliquam id urna imperdiet libero mollis hendrerit</span>
             </div>
           </div>

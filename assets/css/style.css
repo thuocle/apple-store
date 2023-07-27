@@ -235,30 +235,30 @@ header {
     transition: all 0.3s ease-in-out 0s;
 }
 header .navbar {
-	padding: 20px 0px;
+	padding: 10px 0px;
 }
 .background-header .navbar {
-	padding: 10px 0px;
+	padding: 5px 0px;
 }
 .background-header {
 	top: 0;
 	position: fixed;
-	background-color: #fff!important;
+	background-color: #202020d7!important;
 	box-shadow: 0px 1px 10px rgba(0,0,0,0.1);
 }
-.background-header .navbar-brand h2 {
+/* .background-header .navbar-brand h2 {
 	color: rgb(67,67,68)!important;
-}
-.background-header .navbar-nav a.nav-link {
+} */
+/* .background-header .navbar-nav a.nav-link {
 	color: #1e1e1e!important;
-}
-.background-header .navbar-nav .nav-link:hover,
+} */
+/* .background-header .navbar-nav .nav-link:hover,
 .background-header .navbar-nav .active>.nav-link,
 .background-header .navbar-nav .nav-link.active,
 .background-header .navbar-nav .nav-link.show,
 .background-header .navbar-nav .show>.nav-link {
-	/* color: #FFF!important; */
-}
+	color: #FFF!important; 
+} */
 .navbar .navbar-brand {
 	float: 	left;
 	margin-top: 12px;

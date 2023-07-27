@@ -27,7 +27,7 @@
                 // output data of each row
                 while($row = $result->fetch_assoc()) {
               ?>
-              <a class="dropdown-item" href="category.php?idnsx=<?php echo $row['MaLoaiSP'] ?>"><?php echo $row['TenLoaiSP'] ?></a>
+              <a class="dropdown-item" href="category.php?idloaisp=<?php echo $row['MaLoaiSP'] ?>"><?php echo $row['TenLoaiSP'] ?></a>
               <?php
                 }
               }

@@ -29,7 +29,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <?php session_start();
+                    <?php //session_start();
                     include('./config/db.php');
                     $idloaisp = $_GET['idloaisp'];
                     $sq = "SELECT * FROM loaisp WHERE MaLoaiSP = '$idloaisp'";
@@ -106,7 +106,7 @@
               $page = ceil($rowcount/3);
               for($i=1;$i<=$page;$i++) {
             ?>
-            <li class="page-item"><a class="page-link" href="category.php?idnsx=<?php echo $idnsx ?>&page=<?php echo $i ?>"><?php echo $i ?></a></li>
+            <li class="page-item"><a class="page-link" href="category.php?idloaisp=<?php echo $idloaisp ?>&page=<?php echo $i ?>"><?php echo $i ?></a></li>
             <?php }
             ?>
             <li class="page-item">
