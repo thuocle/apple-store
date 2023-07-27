@@ -344,7 +344,7 @@ header .navbar {
 	left: 0;
 	bottom:0;
 	right: 0;
-	background-color: rgba(0,0,0,.6)
+	/* background-color: rgba(0,0,0,.6) */
 }
 .Modern-Slider .text-content{
 	z-index: 2;
@@ -1397,7 +1397,7 @@ footer .contact-form button.filled-button:hover {
 	.navbar .navbar-nav .nav-link.active,
 	.navbar .navbar-nav .nav-link.show,
 	.navbar .navbar-nav .show>.nav-link {
-		color: #FFF!important;
+		color: #fff !important;;
 		border-bottom: none!important;
 	}
 }
