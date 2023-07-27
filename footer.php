@@ -2,7 +2,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-3 footer-item">
-            <h4>Mobile Store</h4>
+            <h4>Apple Store</h4>
             <p>Vivamus tellus mi. Nulla ne cursus elit,vulputate. Sed ne cursus augue hasellus lacinia sapien vitae.</p>
             <ul class="social-icons">
               <li><a rel="nofollow" href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
