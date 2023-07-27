@@ -1198,9 +1198,9 @@ footer .contact-form button.filled-button:hover {
 	width: 100%;
 	padding: 20px;
 	display: inline-block;
-	background-color: rgb(67,67,68);
+	background-color: rgb(255, 255, 255);
   	font-size: 18px;
-  	color: #121212;
+  	color: #000000;
   	letter-spacing: 0.5px;
   	font-weight: 700;
   	transition: all 0.3s;
@@ -1210,12 +1210,13 @@ footer .contact-form button.filled-button:hover {
 	margin-top: 5px;
 }
 #tabs ul .ui-tabs-active span {
-  background: #faf5b2;
+  background: #5a5a59;
   border: #faf5b2;
   line-height: 90px;
   border-bottom: none;
 }
 #tabs ul .ui-tabs-active a {
+	background-color: #000;
   color: #fff;
 }
 #tabs ul .ui-tabs-active span {

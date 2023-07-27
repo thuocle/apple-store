@@ -20,14 +20,14 @@
               <a class="dropdown-item" href="products.php">Tất cả sản phẩm</a>
               <?php
                 include('./config/db.php');
-                $sql = "SELECT * FROM nsx";
+                $sql = "SELECT * FROM loaisp";
                 $result = $link->query($sql);
               
                 if ($result->num_rows > 0) {
                 // output data of each row
                 while($row = $result->fetch_assoc()) {
               ?>
-              <a class="dropdown-item" href="category.php?idnsx=<?php echo $row['MaNSX'] ?>"><?php echo $row['TenNSX'] ?></a>
+              <a class="dropdown-item" href="category.php?idnsx=<?php echo $row['MaLoaiSP'] ?>"><?php echo $row['TenLoaiSP'] ?></a>
               <?php
                 }
               }

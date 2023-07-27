@@ -31,15 +31,15 @@
                 <div class="col-md-12">
                     <?php session_start();
                     include('./config/db.php');
-                    $idnsx = $_GET['idnsx'];
-                    $sq = "SELECT * FROM nsx WHERE MaNSX = '$idnsx'";
+                    $idloaisp = $_GET['idloaisp'];
+                    $sq = "SELECT * FROM loaisp WHERE MaLoaiSP = '$idloaisp'";
                     $resul = $link->query($sq);
                     
                     if ($resul->num_rows > 0) {
                         // output data of each row
                         while ($ro = $resul->fetch_assoc()) {
                     ?>
-                            <h1><?php echo $ro["TenNSX"] ?></h1>
+                            <h1><?php echo $ro["TenLoaiSP"] ?></h1>
                             <span><?php echo $ro["GioiThieu"] ?></span>
                     <?php
                         }
@@ -52,7 +52,7 @@
         <div class="container">
             <div class="row">
                 <?php
-                $sql = "SELECT * FROM sanpham WHERE MaNSX = '$idnsx'";
+                $sql = "SELECT * FROM sanpham WHERE MaLoaiSP = '$idloaisp'";
                 $page=0;
                 if(isset($_GET['page']))
                 {
@@ -101,7 +101,7 @@
                             <span class="sr-only">Previous</span>
                         </a>
 <?php
-              $sqltrang = mysqli_query($link,"SELECT * FROM sanpham WHERE MaNSX = '$idnsx'");
+              $sqltrang = mysqli_query($link,"SELECT * FROM sanpham WHERE MaLoaiSP = '$idloaisp'");
               $rowcount = mysqli_num_rows($sqltrang);
               $page = ceil($rowcount/3);
               for($i=1;$i<=$page;$i++) {

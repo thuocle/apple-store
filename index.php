@@ -85,7 +85,7 @@
           </div>
           <?php
               include('./config/db.php');
-              $sql = "SELECT * FROM sanpham WHERE MaNSX = '01' LIMIT 3";
+              $sql = "SELECT * FROM sanpham WHERE MaLoaiSP = '01' LIMIT 3";
               $result = $link->query($sql);
             
               if ($result->num_rows > 0) {
