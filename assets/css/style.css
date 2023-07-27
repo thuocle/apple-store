@@ -228,7 +228,7 @@ header {
 	z-index: 99999;
 	width: 100%;
 	background-color: transparent!important;
-	height: 80px;
+	/* height: 80px; */
 	-webkit-transition: all 0.3s ease-in-out 0s;
     -moz-transition: all 0.3s ease-in-out 0s;
     -o-transition: all 0.3s ease-in-out 0s;
@@ -260,15 +260,19 @@ header .navbar {
 	color: #FFF!important; 
 } */
 .navbar .navbar-brand {
-	float: 	left;
-	margin-top: 12px;
+	/* float: 	left; */
 	outline: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 15px;
 }
 .navbar .navbar-brand h2 {
+	margin-top: 10px !important;
 	color: #fff;
 	text-transform: uppercase;
-	font-size: 24px;
-	font-weight: 700;
+	font-size: 20px;
+	font-weight: 500;
 	-webkit-transition: all .3s ease 0s;
     -moz-transition: all .3s ease 0s;
     -o-transition: all .3s ease 0s;
@@ -277,6 +281,9 @@ header .navbar {
 .navbar .navbar-brand h2 em {
 	font-style: normal;
 	font-size: 16px;
+}
+.navbar .navbar-brand svg{
+	color: #FFF;
 }
 #navbarResponsive {
 	z-index: 999;
@@ -302,7 +309,7 @@ header .navbar {
 .navbar .navbar-nav .nav-link.show,
 .navbar .navbar-nav .show>.nav-link {
 	color: #FFF;
-	border-bottom: 3px solid #FFF;
+	border-bottom: 1px solid #FFF;
 }
 .navbar .navbar-toggler-icon {
 	background-image: none;
@@ -392,7 +399,7 @@ header .navbar {
 }
 
 .Modern-Slider .item-1 .img-fill {
-	background-image: url(../images/slider-image-1-1920x900.jpg);
+	background-image: url(../images/slider1.png);
 }
 
 .Modern-Slider .item-2 .img-fill {
@@ -559,7 +566,8 @@ ul.slick-dots {
 }
 
 .service-item img {
-	width: 100%;
+	max-width: 250px;
+	max-height: 250px;
 	overflow: hidden;
 }
 

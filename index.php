@@ -80,7 +80,7 @@
           <div class="col-md-12">
             <div class="section-heading">
               <h2>iPhone nào phù hợp với bạn?</h2>
-              <span>Aliquam id urna imperdiet libero mollis hendrerit</span>
+              <span>Hãy cùng chúng tôi tìm ra sản phẩm tốt nhất dành cho bạn.</span>
             </div>
           </div>
           <?php
@@ -93,13 +93,13 @@
               while($row = $result->fetch_assoc()) {
                 echo '<div class="col-md-4">';
                 echo '<div class="service-item">';
-                echo '<img src="img/'.$row["HinhAnh"].'" alt="" height="350" width="350" >';
+                echo '<img src="img/'.$row["HinhAnh"].'" alt="" >';
                 echo '<div class="down-content">';
                 echo '<h4>'. $row["TenSanPham"] .'</h4>';
                 echo '<div style="margin-bottom:10px;">';
                 echo '<span>';
-                echo '<del>'.$row["GiaSanPham"]*1.5.'<sup>VND</sup></del> &nbsp;'.$row["GiaSanPham"].'<sup>VND</sup>';
-                echo ' </span>';
+                echo '<p>. $row["GiaSanPham"].<sup>VND</sup></p>';
+                echo ' </span>'; 
                 echo '</div>';
                 echo '<p>'. $row["Ram"] .' </p>';
                 echo '<p>'. $row["BoNho"] .' </p>';
