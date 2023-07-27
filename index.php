@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
+    <link rel="shortcut icon" href="./assets/fonts/apple.ico" type="image/x-icon">
     <title>Apple Store</title>
 
  <!-- Bootstrap core CSS -->
@@ -90,6 +90,7 @@
             
               if ($result->num_rows > 0) {
               // output data of each row
+              
               while($row = $result->fetch_assoc()) {
                 echo '<div class="col-md-4">';
                 echo '<div class="service-item">';
@@ -98,12 +99,14 @@
                 echo '<h4>'. $row["TenSanPham"] .'</h4>';
                 echo '<div style="margin-bottom:10px;">';
                 echo '<span>';
-                echo '<p>. $row["GiaSanPham"].<sup>VND</sup></p>';
+                $gia = $row["GiaSanPham"];
+                $gia_dinh_dang = number_format($gia, 0, ',', '.');
+                echo '<p>'.$gia_dinh_dang.'<sup>VND</sup></p>';
                 echo ' </span>'; 
                 echo '</div>';
-                echo '<p>'. $row["Ram"] .' </p>';
-                echo '<p>'. $row["BoNho"] .' </p>';
-                echo '<a href="product-details.php?masp='. $row["MaSanPham"] .' " class="filled-button">Xem thêm</a>';
+                //echo '<p>'. $row["Ram"] .' </p>';
+                //echo '<p>'. $row["BoNho"] .' </p>';
+                echo '<a href="product-details.php?masp='. $row["MaSanPham"] .' " class="filled-button">Mua ngay</a>';
                 echo '</div>';
                 echo '</div>';
                 echo '<br>';

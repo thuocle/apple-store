@@ -393,21 +393,21 @@ header .navbar {
 
 .Modern-Slider .item .img-fill {
 	background-size: cover;
-	background-position: center center;
+	background-position: top center;
 	background-repeat: no-repeat;
-	height:95vh;
+	height:90vh;
 }
 
 .Modern-Slider .item-1 .img-fill {
-	background-image: url(../images/slider1.png);
+	background-image: url(../images/iPhone-14-Pro-Max.jpg);
 }
 
 .Modern-Slider .item-2 .img-fill {
-	background-image: url(../images/slider-image-2-1920x900.jpg);
+	background-image: url(../images/ip2.jpg);
 }
 
 .Modern-Slider .item-3 .img-fill {
-	background-image: url(../images/slider-image-3-1920x900.jpg);
+	background-image: url(../images/ip3.jpg);
 }
 
 .Modern-Slider .NextArrow{
@@ -511,7 +511,9 @@ ul.slick-dots {
   position: relative;
 }
 
-.Modern-Slider {background:#000;}
+.Modern-Slider {
+	padding-top: 60px !important;
+	background:#000;}
 
 
 /* ==== Slick Slider Css Ruls === */

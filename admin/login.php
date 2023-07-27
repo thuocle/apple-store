@@ -8,7 +8,9 @@
         <meta name="author" content="" />
         <title>Login</title>
         <link href="css/styles.css" rel="stylesheet" />
+        
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <link rel="shortcut icon" href="../assets/fonts/apple.ico" type="image/x-icon">
         <?php session_start();
         if(isset($_POST['email']) && isset($_POST['pass'])) {
             $user = $_POST['email'];
