@@ -1,5 +1,5 @@
 body {
-  font-family: 'Poppins', sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -257,7 +257,7 @@ header .navbar {
 .background-header .navbar-nav .nav-link.active,
 .background-header .navbar-nav .nav-link.show,
 .background-header .navbar-nav .show>.nav-link {
-	color: rgb(67,67,68)9!important;
+	/* color: #FFF!important; */
 }
 .navbar .navbar-brand {
 	float: 	left;
@@ -301,8 +301,8 @@ header .navbar {
 .navbar .navbar-nav .nav-link.active,
 .navbar .navbar-nav .nav-link.show,
 .navbar .navbar-nav .show>.nav-link {
-	color: rgb(67,67,68);
-	border-bottom: 3px solid rgb(67,67,68);
+	color: #FFF;
+	border-bottom: 3px solid #FFF;
 }
 .navbar .navbar-toggler-icon {
 	background-image: none;
@@ -408,7 +408,7 @@ header .navbar {
   top:50%;
   right:30px;
   border:0 none;
-  /* background-color: transparent; */
+  background-color: transparent;
   text-align:center;
   font-size: 36px;
   font-family: 'FontAwesome';
@@ -1397,7 +1397,7 @@ footer .contact-form button.filled-button:hover {
 	.navbar .navbar-nav .nav-link.active,
 	.navbar .navbar-nav .nav-link.show,
 	.navbar .navbar-nav .show>.nav-link {
-		color: #fff !important;;
+		color:  rgb(67,67,68)!important;
 		border-bottom: none!important;
 	}
 }
