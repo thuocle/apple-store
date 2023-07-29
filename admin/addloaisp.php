@@ -25,7 +25,7 @@
                         {
                 ?>
                 <tr>
-                    <td>Mã nhà sản xuất</td>
+                    <td>Mã loại sản phẩm</td>
                     <td><input name="maloaisp" value="<?php echo $_GET['id'] ?>" type="text" placeholder="Tên loại sản phẩm " readonly/></td>
                 </tr>
                 <?php
@@ -33,7 +33,7 @@
                 ?>
                 <tr>
                     <td>Tên loại sản phẩm</td>
-                    <td><input name="tennsx" type="text" placeholder="Tên loại sản phẩm"/></td>
+                    <td><input name="tenloaisp" type="text" placeholder="Tên loại sản phẩm"/></td>
                 </tr>
                 <tr>
                 <td>Giới thiệu</td>
