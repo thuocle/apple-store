@@ -22,20 +22,11 @@
             $email = $_POST['email'];
             $adress = $_POST['diachi'];
             if(empty($user) || empty($pass) || empty($name) || empty($email) || empty($adress)) {
-                echo "<script type='text/javascript'>alert('Vui lòng nhập đầy đủ thông tin');</script>";
-                exit(); // kết thúc kịch bản PHP để đảm bảo không có mã nào được thực thi sau khi chuyển hướng
+                echo "<script>if(confirm('Vui lòng nhập đầy đủ thông tin!')){window.location.href='../admin/register.php'};</script>";
             }
             $sql = "INSERT INTO `users`(`TenDangNhap`, `MatKhau`, `Email`, `HoTen`, `DiaChi`, `Quyen`) VALUES ('$user','$pass','$email','$name', '$adress',0)";
             if(mysqli_query($link,$sql)) {
-                echo "<script>alert('Đăng ký thành công!');</script>";
-                echo '
-<div class="container">
-    <h1>Đăng ký thành công!</h1>
-    <p>Cảm ơn bạn đã đăng ký tài khoản. Chúc bạn một ngày tốt lành!</p>
-    <button onclick="window.location.href=\'login.php\'">Đăng nhập</button>
-</div>
-';
-                header('Location: ../admin/login.php');
+                echo "<script>if(confirm('Đăng ký thành công! Mời bạn đăng nhập để trải nghiệm mua sắm!')){window.location.href='../admin/login.php'};</script>";
                 // exit(); // kết thúc kịch bản PHP để đảm bảo không có mã nào được thực thi sau khi chuyển hướng
             } else {
                 echo "<script type='text/javascript'>alert('Vui lòng thử lại');</script>";

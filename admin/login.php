@@ -58,6 +58,7 @@
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="inputPassword" type="password" name="pass"
                                                 placeholder="Password" />
+                                            <button type="button" id="show-password">Hiện mật khẩu</button>
                                             <label for="inputPassword">Mật khẩu</label>
                                         </div>
                                         <div class="form-check mb-3">
@@ -85,6 +86,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
     <script src="js/scripts.js"></script>
+    <script>
+  var passwordInput = document.getElementById("inputPassword");
+  var showPasswordButton = document.getElementById("show-password");
+  showPasswordButton.addEventListener("click", function() {
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      showPasswordButton.textContent = "Ẩn mật khẩu";
+    } else {
+      passwordInput.type = "password";
+      showPasswordButton.textContent = "Hiện mật khẩu";
+    }
+  });
+</script>
 </body>
 
 </html>
