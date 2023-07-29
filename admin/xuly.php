@@ -18,12 +18,16 @@
     $hdh = $_POST['hdh'];
     $bh = $_POST['bh'];
     $pk = $_POST['pk'];
-    $nxs = $_POST['nxs'];
+    $loaisp = $_POST['loaisp'];
     $bonho = $_POST['bonho'];
-    $sql = "SELECT * FROM nsx WHERE TenNSX = '$nxs'";
+    $chip = $_POST['chip'];
+    $cpu = $_POST['cpu'];
+    $gpu = $_POST['gpu'];
+    $tid = $_POST['tid'];
+    $sql = "SELECT * FROM loaisp WHERE TenLoaiSP = '$loaisp'";
                                     if ($result = mysqli_query($link, $sql)) {
                                         while ($row = mysqli_fetch_array($result)) {
-                                            $id = $row['MaNSX'];
+                                            $id = $row['MaLoaiSP'];
                                         }
                                     }
                 $sql1 = "INSERT INTO sanpham VAlUES ('$i','$tensp',$giaban,$sl,'$kichthuoc','$trgluong','$camera','$ram','$sim','$pin','$bonho','$hdh','$bh','$pk','$hinhanh','$id')";
@@ -59,14 +63,14 @@
     $pk = $_POST['pk'];
     $nxs = $_POST['nxs'];
     $bonho = $_POST['bonho'];
-    $sql = "SELECT * FROM nsx WHERE TenNSX = '$nxs'";
+    $sql = "SELECT * FROM loaisp WHERE TenLoaiSP = '$nxs'";
                                     if ($result = mysqli_query($link, $sql)) {
                                         while ($row = mysqli_fetch_array($result)) {
-                                            $id = $row['MaNSX'];
+                                            $id = $row['MaLoaiSP'];
                                         }
                                     }
                                     $nasp = $_POST['masp'];
-                $sq = "UPDATE sanpham SET TenSanPham = '$tensp', GiaSanPham = '$giaban', SoLuong = '$sl', KichThuoc = '$kichthuoc', TrongLuong = '$trgluong', Camera = '$camera', Ram = '$ram', Sim = '$sim', Pin = '$pin', BoNho = '$bonho', HeDieuHanh = '$hdh', BaoHanh = '$bh', PhuKien = '$pk', HinhAnh = '$hinhanh', MaNSX = '$id' WHERE MaSanPham = '$nasp'";                
+                $sq = "UPDATE sanpham SET TenSanPham = '$tensp', GiaSanPham = '$giaban', SoLuong = '$sl', KichThuoc = '$kichthuoc', TrongLuong = '$trgluong', Camera = '$camera', Ram = '$ram', Sim = '$sim', Pin = '$pin', BoNho = '$bonho', HeDieuHanh = '$hdh', BaoHanh = '$bh', PhuKien = '$pk', HinhAnh = '$hinhanh', MaNSX = '$id', Chip = '$chip' WHERE MaSanPham = '$nasp'";                
                 $sql1 = "INSERT INTO sanpham VAlUES ('$i','$tensp',$giaban,$sl,'$kichthuoc','$trgluong','$camera','$ram','$sim','$pin','$bonho','$hdh','$bh','$pk','$hinhanh','$id')";
                 if (mysqli_query($link, $sq)) {
                     $padt = "D:/".$hinhanh;

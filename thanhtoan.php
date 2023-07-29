@@ -38,21 +38,21 @@
           mysqli_close($link);
           unset($_SESSION['cart']);
           $_SESSION['mess'] = "Đơn hàng của bạn đang được xử lý";
-          header(('Location:../mobile-shop/products.php'));
+          header(('Location:../apple-store/products.php'));
     } else {
       echo "Error: " . $sql . "<br>" . mysqli_error($link);
     }
   }
   else
-      header(('Location:../mobile-shop/checkout.php'));
+      header(('Location:../apple-store/checkout.php'));
   }
   else{
     $_SESSION['mess'] = "Giỏ hàng trống vui lòng thêm sản phẩm";
-    header(('Location:../mobile-shop/products.php'));
+    header(('Location:../apple-store/products.php'));
   }
   }
   else
   {
     $_SESSION['mess'] = "Vui lòng đăng nhập để tiếp tục";
-    header(('Location:../mobile-shop/admin/login.php'));
+    header(('Location:../apple-store/admin/login.php'));
   }

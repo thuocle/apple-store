@@ -44,7 +44,7 @@
           if(isset($_SESSION['cart']))
           {
             ?>
-      <table border="1" style="min-height: 500px;">
+      <table border="1" style="min-height: 200px;">
               <tr>
                 <th style="width: 200; text-align: center;">Hình ảnh</th>
                 <th style="width: 200; text-align: center;">Tên sản phẩm</th>
@@ -60,10 +60,10 @@
               $tongtien += $tien;
       ?>
             <tr>
-            <td style="width: 200;">
-            <img style="text-align: center;" src="img/<?php echo $item['img'] ?>"height="100" width="100" >
+            <td style="width: 200; text-align: center;">
+            <img src="img/<?php echo $item['img'] ?>"height="100" width="100" >
             </td>
-            <td style="width: 200;"><?php echo $item['tensp'] ?></td>
+            <td style="width: 200;text-align: center;"><?php echo $item['tensp'] ?></td>
             <td style="width: 200; text-align: center;"><?php echo $item['sl'] ?></td>
             <td style="width: 200; text-align: center;"><?php echo $item['gia'] ?></td>
             <td style="width: 200; text-align: center;"><?php echo $tien ?></td>

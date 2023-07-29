@@ -1,10 +1,10 @@
 <?php
     include('../config/db.php');
     if(isset($_POST['submit'])) {
-    $mansx = rand(1,100);
-    $tennsx = $_POST['tennsx'];
+    $maloaisp = rand(1,100);
+    $tenloaisp = $_POST['tenloaisp'];
     $gt = $_POST['gt'];
-    $sql = "INSERT INTO nsx VALUES ('$mansx','$tennsx','$gt')";
+    $sql = "INSERT INTO loaisp VALUES ('$maloaisp','$tenloaisp','$gt')";
     if(mysqli_query($link,$sql)) {
                     
                     header(('Location:../admin/category.php'));
@@ -15,10 +15,10 @@
     }
     if(isset($_POST['sua']))
     {
-        $mansx = $_POST['mansx'];
-        $tennsx = $_POST['tennsx'];
+        $maloaisp = $_POST['maloaisp'];
+        $tenloaisp = $_POST['tenloaisp'];
         $gt = $_POST['gt'];
-        $sql = "UPDATE nsx SET TenNSX = '$tennsx',GioiThieu = '$gt' WHERE MaNSX='$mansx'";
+        $sql = "UPDATE loaisp SET TenLoaiSP = '$tenloaisp',GioiThieu = '$gt' WHERE MaLoaiSP='$maloaisp'";
         if(mysqli_query($link,$sql)) {
             echo "<script type='text/javascript'>alert('Sửa danh mục thành công');</script>";
             header(('Location:../admin/category.php'));
@@ -29,7 +29,7 @@
     if(isset($_GET['idxoa']))
     {
         $xoa = $_GET['idxoa'];
-        $quey = "DELETE FROM nsx Where MaNSX = '$xoa'";
+        $quey = "DELETE FROM loaisp Where MaLoaiSP = '$xoa'";
         if (mysqli_query($link, $quey)) {
             echo "<script type='text/javascript'>alert('Xóa danh mục thành công');</script>";
             header(('Location:../admin/category.php'));

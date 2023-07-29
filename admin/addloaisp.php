@@ -18,7 +18,7 @@
     <?php include("../admin/assets/header.php");?>
     <div id="layoutSidenav_content">
         <div style="margin: auto;" >
-            <form action="xulynsx.php" method="POST" enctype="multipart/form-data">
+            <form action="xulyloaisp.php" method="POST" enctype="multipart/form-data">
                 <table id="bang">
                 <?php
                         if(isset($_GET['id']))
@@ -26,14 +26,14 @@
                 ?>
                 <tr>
                     <td>Mã nhà sản xuất</td>
-                    <td><input name="mansx" value="<?php echo $_GET['id'] ?>" type="text" placeholder="Tên nhà sản xuất" readonly/></td>
+                    <td><input name="maloaisp" value="<?php echo $_GET['id'] ?>" type="text" placeholder="Tên loại sản phẩm " readonly/></td>
                 </tr>
                 <?php
                         }
                 ?>
                 <tr>
-                    <td>Tên nhà sản xuất</td>
-                    <td><input name="tennsx" type="text" placeholder="Tên nhà sản xuất"/></td>
+                    <td>Tên loại sản phẩm</td>
+                    <td><input name="tennsx" type="text" placeholder="Tên loại sản phẩm"/></td>
                 </tr>
                 <tr>
                 <td>Giới thiệu</td>

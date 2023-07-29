@@ -80,7 +80,7 @@
           <div class="col-md-12">
             <div class="section-heading">
               <h2>iPhone nào phù hợp với bạn?</h2>
-              <span>Hãy cùng chúng tôi tìm ra sản phẩm tốt nhất dành cho bạn.</span>
+              <span>Chúng tôi sẽ giúp bạn tìm ra sản phẩm tốt nhất.</span>
             </div>
           </div>
           <?php
@@ -101,12 +101,12 @@
                 echo '<span>';
                 $gia = $row["GiaSanPham"];
                 $gia_dinh_dang = number_format($gia, 0, ',', '.');
-                echo '<p>'.$gia_dinh_dang.'<sup>VND</sup></p>';
+                echo '<p>Từ '.$gia_dinh_dang.'đ</p>';
                 echo ' </span>'; 
                 echo '</div>';
                 //echo '<p>'. $row["Ram"] .' </p>';
                 //echo '<p>'. $row["BoNho"] .' </p>';
-                echo '<a href="product-details.php?masp='. $row["MaSanPham"] .' " class="filled-button">Mua ngay</a>';
+                echo '<a href="product-details.php?masp='. $row["MaSanPham"] .' " class="filled-button">Mua</a>';
                 echo '</div>';
                 echo '</div>';
                 echo '<br>';
@@ -126,7 +126,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="left-image">
-                <img src="assets/images/about-1-570x350.jpg" class="img-fluid" alt="">
+                <img src="assets/images/ip1.jpg" class="img-fluid" alt="">
               </div>
             </div>
             <div class="col-md-6 align-self-center">

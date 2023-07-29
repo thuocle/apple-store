@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Password Reset - SB Admin</title>
+        <title>Password Reset - Apple Admin</title>
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <?php
@@ -27,7 +27,7 @@
             use PHPMailer\PHPMailer\PHPMailer;
             use PHPMailer\PHPMailer\Exception;
             include('../config/db.php');
-            require 'phpmailer/src/Exception.php';
+            require '';
             require 'phpmailer/src/PHPMailer.php';
             require 'phpmailer/src/SMTP.php';
             if(isset($_POST["send"]))
@@ -42,11 +42,11 @@
                 $mail->Password = $UserPass;
                 $mail->SMTPSecure = 'ssl';
                 $mail->Port = 465;
-                $mail->setFrom('ledanghoc1102@gmail.com');
+                $mail->setFrom('anhtuan1990nxht@gmail.com');
                 $mail->addAddress($_POST['email']);
                 $mail->isHTML(true);
-                $mail->Subject = "Password Recovery from Mobile-Shop with Love";
-                $mail->Body = "Bạn đã yêu cầu khôi phục mật khẩu từ Mobile-Shop. Mật khẩu mới của bạn là: ".$pass." Vui lòng đổi mật khẩu khi đăng nhập lần kế tiếp";
+                $mail->Subject = "Password Recovery from Apple Store with Love";
+                $mail->Body = "Bạn đã yêu cầu khôi phục mật khẩu từ Apple Store. Mật khẩu mới của bạn là: ".$pass." Vui lòng đổi mật khẩu khi đăng nhập lần kế tiếp";
                 $mail->send();
                 $sql1 = "UPDATE users SET MatKhau = '$pass' WHERE Email = '$email'";
                 mysqli_query($link,$sql1);
@@ -89,7 +89,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2022</div>
+                            <div class="text-muted">Copyright &copy; Apple Store</div>
                             <div>
                                 <a href="#">Privacy Policy</a>
                                 &middot;

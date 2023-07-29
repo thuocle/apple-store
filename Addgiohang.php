@@ -40,6 +40,6 @@
         }
     }
     $_SESSION['mess'] = "Thêm sản phẩm thành công";
-    header(('Location:../mobile-shop/products.php'));
+    header(('Location:../apple-store/products.php'));
     die();
 ?>
