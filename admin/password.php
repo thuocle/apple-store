@@ -27,9 +27,9 @@
             use PHPMailer\PHPMailer\PHPMailer;
             use PHPMailer\PHPMailer\Exception;
             include('../config/db.php');
-            require '';
-            require 'phpmailer/src/PHPMailer.php';
-            require 'phpmailer/src/SMTP.php';
+            require 'PHPMailer-master/src/Exception.php';
+            require 'PHPMailer-master/src/PHPMailer.php';
+            require 'PHPMailer-master/src/SMTP.php';
             if(isset($_POST["send"]))
             {
                 $pass = random_str(8);
@@ -39,7 +39,7 @@
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
                 $mail->Username = $UserMail;
-                $mail->Password = $UserPass;
+                $mail->Password = 'gfiqorfihsoevrsz';
                 $mail->SMTPSecure = 'ssl';
                 $mail->Port = 465;
                 $mail->setFrom('anhtuan1990nxht@gmail.com');
