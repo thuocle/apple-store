@@ -27,9 +27,7 @@
 
     <!-- Page Content -->
     <div class="page-heading header-text">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
+        <div class="text">
                     <?php //session_start();
                     include('./config/db.php');
                     $idloaisp = $_GET['idloaisp'];
@@ -45,8 +43,6 @@
                     <?php
                         }
                     } ?>
-                </div>
-            </div>
         </div>
     </div>
     <div class="services">

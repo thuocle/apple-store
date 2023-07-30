@@ -25,12 +25,8 @@
 
     <!-- Page Content -->
     <div class="page-heading header-text">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+      <div class="text">
             <h1>Thông tin giỏ hàng</h1>
-          </div>
-        </div>
       </div>
     </div>
 

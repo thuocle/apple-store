@@ -79,13 +79,9 @@ form.example::after {
 
     <!-- Page Content -->
     <div class="page-heading header-text">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+          <div class="text">
             <h1>Trang sản phẩm</h1>
-            <span>Giá rẻ nhất thị trường</span>
-          </div>
-        </div>
+            <span>Sức mạnh vượt trội - Đi đầu xu hướng công nghệ</span>
       </div>
     </div>
   <form class="example" action="" method="POST" style="position: absolute;margin-left: 800px;;max-width:800px; margin-top: 50px;">

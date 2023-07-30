@@ -49,7 +49,7 @@
             <li class="nav-item dropdown">
             <a class="dropdown-toggle nav-link" data-toggle="dropdown" data-bs-toggle="dropdown">Xin chào<?php echo " ".$_SESSION['user']?></a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="../mobile-shop/admin/logout.php">Đăng xuất</a>
+              <a class="dropdown-item" href="../apple-store/admin/logout.php">Đăng xuất</a>
             </div>
           </li>
             <!-- <li class="nav-item">

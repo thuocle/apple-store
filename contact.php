@@ -26,14 +26,10 @@
 
     <!-- Page Content -->
     <div class="page-heading header-text">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+      <div class="text">
             <h1>Contact Us</h1>
             <span>feel free to send us a message now!</span>
           </div>
-        </div>
-      </div>
     </div>
 
     <div class="contact-information">

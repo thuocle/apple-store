@@ -1110,17 +1110,25 @@ footer .contact-form button.filled-button:hover {
 
 .page-heading {
 	text-align: center;
-	background-image: url(../images/banner-image-1-1920x500.jpg);
+	background-image: url(../images/ipad-pro_overview__glcw458o4byq_og.png);
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	padding: 230px 0px 150px 0px;
 	color: #fff;
 	position: relative;
+	width: 100%;
+	min-height: 100vh !important;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center !important;
 }
-.page-heading .container {
-	position: relative;
+.page-heading .text{
 	z-index: 2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center !important;
 }
 
 .page-heading:before {
@@ -1148,6 +1156,7 @@ footer .contact-form button.filled-button:hover {
 	letter-spacing: 1px;
 	color: #fff;
 	display: block;
+	padding: 15px;
 }
 
 

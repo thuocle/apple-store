@@ -7,7 +7,7 @@
     $hoten = $_POST['hoten'];
     $sdt = $_POST['sdt'];
     $dchi = $_POST['dchi'];
-    $quyen = $_POST['quyen'] ? 1 : 0;
+    $quyen = $_POST['quyen'] == "admin" ? 1 : 0;
     $sql = "INSERT INTO users VALUES ('$user','$pass','$email','$hoten','$sdt','$dchi',$quyen)";
     if(mysqli_query($link,$sql)) {
                     

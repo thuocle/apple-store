@@ -32,15 +32,11 @@
   ?>
   <!-- Page Content -->
   <div class="page-heading header-text">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
+        <div class="text">
           <h1><?php echo '<del>'.$row["GiaSanPham"]*1.5.'<sup>VND</sup></del> &nbsp;'.$row["GiaSanPham"].'<sup>VND</sup>'; ?></h1>
           <span>
             Khuyến mãi lớn nhất trong năm
           </span>
-        </div>
-      </div>
     </div>
   </div>
 
