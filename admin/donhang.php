@@ -7,9 +7,9 @@
         if(isset($_GET['id']))
         {
             $ip = $_GET['id'];
-            $linq = "UPDATE donhang SET TrangThai = 'Thành công' WHERE MaDonHang = '$ip'";
+            $linq = "UPDATE donhang SET TrangThai = 2 WHERE MaDonHang = '$ip'";
             if(mysqli_query($link,$linq)) {
-                echo "<script type='text/javascript'>alert('Sửa danh mục thành công');</script>";
+                echo "<script type='text/javascript'>alert('Sửa trạng thái thành công');</script>";
                 header(('Location:../admin/donhang.php'));
                   } else {
                         echo "Error: " . $linq . "<br>" . mysqli_error($link);
@@ -70,14 +70,14 @@
                                             <td><?php echo $row['DiaChi'] ?></td>
                                             <td><?php echo $row['TongTien'] ?></td>
                                             <?php
-                                                if($row['TrangThai'] == "Thành công") {
+                                                if($row['TrangThai'] == 2) {
                                             ?>
-                                            <td style="color: Green;"><?php echo $row['TrangThai'] ?></td>
+                                            <td style="color: Green;"><?php echo $row['TrangThai']== 1 ? 'Đang xử lý':'Thành công' ?></td>
                                             <?php
                                                 }
                                                 else {
                                             ?>
-                                            <td><?php echo $row['TrangThai'] ?></td>
+                                            <td><?php echo $row['TrangThai']== 1 ? 'Đang xử lý':'Thành công'  ?></td>
                                             <?php } ?>
                                             <td><?php echo $row['GhiChu'] ?></td>
                                             <td style="text-align: center;"> <?php

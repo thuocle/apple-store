@@ -17,8 +17,8 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
 $vnp_Returnurl = "http://localhost/apple-store/thanhtoan.php";
-$vnp_TmnCode = "EF91QS1M";//Mã website tại VNPAY 
-$vnp_HashSecret = "OXYCSTEKNDYDXGBKAWSEDUPYDEARGKSI"; //Chuỗi bí mật
+$vnp_TmnCode = "2TDGTBXA";//Mã website tại VNPAY 
+$vnp_HashSecret = "FJSJJNFEYHCLXBLKIFFKHFYGKGVKWNID"; //Chuỗi bí mật
 
 $vnp_TxnRef = "DH".$temp; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
 $vnp_OrderInfo = "Thanh toán hóa đơn";

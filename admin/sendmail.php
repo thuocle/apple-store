@@ -7,10 +7,10 @@ require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 include 'config/db.php';
 
-// Lấy thông tin tài khoản đăng ký từ database
-$username = 'username'; // Thay thế 'username' bằng tên đăng nhập của tài khoản
-$email = 'example@example.com'; // Thay thế 'example@example.com' bằng địa chỉ email của tài khoản
-$password = 'password'; // Thay thế 'password' bằng mật khẩu của tài khoản
+// // Lấy thông tin tài khoản đăng ký từ database
+// $username = 'username'; // Thay thế 'username' bằng tên đăng nhập của tài khoản
+// $email = 'example@example.com'; // Thay thế 'example@example.com' bằng địa chỉ email của tài khoản
+// $password = 'password'; // Thay thế 'password' bằng mật khẩu của tài khoản
 
 // Tạo nội dung email
 $message = '<html><body>';

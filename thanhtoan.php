@@ -1,5 +1,5 @@
 <?php session_start();
-  if(isset($_SESSION['user'])) {
+  // if(isset($_SESSION['user'])) {
     if(isset($_SESSION['cart']))
     {
       if(($_GET['vnp_ResponseCode']) == "00")
@@ -20,8 +20,8 @@
             echo "Error: " . $sql . "<br>" . mysqli_error($link);
           }
     }
-    $time = date("d-m-Y",time());
-    $trangthai = "Đang xử lý";
+    $time = date("Y-m-d H:i:s", time());
+    $trangthai = 1;
     $ghichu = "Thanh toán ATM";
     $id = $_SESSION['user'];
     $tn = "SELECT * FROM users WHERE TenDangNhap = '$id'";
@@ -43,16 +43,16 @@
       echo "Error: " . $sql . "<br>" . mysqli_error($link);
     }
   }
-  else
-      header(('Location:../apple-store/checkout.php'));
+  // else
+  //     header(('Location:../apple-store/checkout.php'));
   }
-  else{
-    $_SESSION['mess'] = "Giỏ hàng trống vui lòng thêm sản phẩm";
-    header(('Location:../apple-store/products.php'));
-  }
-  }
-  else
-  {
-    $_SESSION['mess'] = "Vui lòng đăng nhập để tiếp tục";
-    header(('Location:../apple-store/admin/login.php'));
-  }
+  // else{
+  //   $_SESSION['mess'] = "Giỏ hàng trống vui lòng thêm sản phẩm";
+  //   header(('Location:../apple-store/products.php'));
+  // }
+  // }
+  // else
+  // {
+  //   $_SESSION['mess'] = "Vui lòng đăng nhập để tiếp tục";
+  //   header(('Location:../apple-store/admin/login.php'));
+  // }
