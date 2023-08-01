@@ -1360,6 +1360,7 @@ footer .contact-form button.filled-button:hover {
 	}
 	footer {
 		padding: 80px 0px 20px 0px;
+		width: 100%;
 	}
 	footer .footer-item {
 		border-bottom: 1px solid #343434;

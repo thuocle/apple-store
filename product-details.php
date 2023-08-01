@@ -31,6 +31,7 @@
     while ($row = $result->fetch_assoc()) {
   ?>
   <!-- Page Content -->
+  <form action="" method="post">
   <div class="page-heading header-text">
         <div class="text">
           <h1><?php echo '<del>'.$row["GiaSanPham"]*1.5.'<sup>VND</sup></del> &nbsp;'.$row["GiaSanPham"].'<sup>VND</sup>'; ?></h1>
@@ -105,7 +106,7 @@
                   </table>
                 </div>
               </div>
-              <form action="" method="post">
+              
                 <div class="row">
                   <div class="col-md-6 col-sm-12">
                     <div class="form-group">

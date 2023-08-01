@@ -86,13 +86,16 @@
                     echo "Error: " . $sq . "<br>" . mysqli_error($link);
               }
     }
-    if(isset($_GET['idxoa']))
-    {
-        $xoa = $_GET['idxoa'];
-        $quey = "DELETE FROM sanpham Where MaSanPham = '$xoa'";
-        if (mysqli_query($link, $quey)) {
-            echo "<script type='text/javascript'>alert('Xóa sản phẩm thành công');</script>";
-            header(('Location:../admin/tables.php'));
-        }
+        if(isset($_GET['idxoa']))
+{
+    $xoa = $_GET['idxoa'];
+    $quey = "DELETE FROM sanpham Where MaSanPham = '$xoa'";
+    if (mysqli_query($link, $quey)) {
+        echo "<script>alert('Xóa sản phẩm thành công.');</script>";
+        header('Location: ../admin/tables.php');
+    } else {
+        echo "<script>alert('Xóa sản phẩm không thành công.');</script>";
+        header('Location: ../admin/tables.php');
     }
+}
 ?>

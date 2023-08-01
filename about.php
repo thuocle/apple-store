@@ -26,7 +26,7 @@
   <?php include("header.php");?>
 
     <!-- Page Content -->
-    <div class="page-heading header-text">
+    <!-- <div class="page-heading header-text">
       <div class="text">
             <h1>About Us</h1>
             <span>We have over 20 years of experience</span>
@@ -100,7 +100,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Footer Starts Here -->
     <?php include("footer.php");?>

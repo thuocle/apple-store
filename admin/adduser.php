@@ -11,82 +11,77 @@
             #bang input {
                 width: max;
             }
+            label {
+  display: inline-block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+    .card-header h3{
+        text-align: center;
+    }
         </style>
         
     </head>
     <body class="sb-nav-fixed">
     <?php include("../admin/assets/header.php");?>
     <div id="layoutSidenav_content">
-        <div style="margin: auto;" >
-            <form action="xulyuser.php" method="POST" enctype="multipart/form-data">
-                <table id="bang">
-                <?php
-                        if(isset($_GET['id']))
-                        {
-                ?>
-                <tr>
-                    <td>Tên đăng nhập</td>
-                    <td><input name="user" value="<?php echo $_GET['id'] ?>" type="text" placeholder="Tên đăng nhập" readonly/></td>
-                </tr>
-                <?php
-                        }
-                        else {
-                ?>
-                <tr>
-                    <td>Tên đăng nhập</td>
-                    <td><input name="user" type="text" placeholder="Tên đăng nhập" /></td>
-                </tr>
-                <?php } ?>
-                <tr>
-                    <td>Mật khẩu</td>
-                    <td><input name="pass" type="text" placeholder="Mật khẩu"/></td>
-                </tr>
-                <tr>
-                <td>Email</td>
-                    <td><input name="email" type="text" placeholder="Email"/></td>
-                </tr>
-                <td>Họ tên</td>
-                    <td><input name="hoten" type="text" placeholder="Họ tên"/></td>
-                </tr>
-                <td>Số điện thoại</td>
-                    <td><input name="sdt" type="text" placeholder="Số điện thoại"/></td>
-                </tr>
-                <td>Địa chỉ</td>
-                    <td><input name="dchi" type="text" placeholder="Địa chỉ"/></td>
-                </tr>
-                <tr>
-                <td>Chức vụ</td>
-                <td>
-                    <select name="quyen" id="">
-                        <option value = "" selected> Select option </option>  
-                        <option value="admin">Quản trị viên</option>
-                        <option value="user">Người dùng</option>
-                    </select>
-                </td>
-                </tr>
-                <tr >
-                    <?php
-                        if(isset($_GET['id']))
-                        {
-                    ?>
-                    <td colspan="2" style="text-align: center;">
-                        <input type="submit" name="sua" value="Sửa"/>
-                    </td>
-                    <?php }
-                        else
-                        {
-                    ?>
-                    <td colspan="2" style="text-align: center;">
-                        <input type="submit" name="submit" value="Thêm"/>
-                    </td>
-                    <?php        
-                        } ?>
-                </tr>
-            </table>
-            </form>
-        </div>
-    </div>
-    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><?php echo isset($_GET['id']) ? 'Sửa thông tin người dùng' : 'Thêm người dùng mới' ?></h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="xulyuser.php" method="POST" enctype="multipart/form-data">
+                            <?php if(isset($_GET['id'])) { ?>
+                                <div class="form-group">
+                                    <label for="user">Tên đăng nhập</label>
+                                    <input id="user" name="user" type="text" class="form-control" value="<?php echo $_GET['id'] ?>" readonly />
+                                </div>
+                            <?php } else { ?>
+                                <div class="form-group">
+                                    <label for="user">Tên đăng nhập</label>
+                                    <input id="user" name="user" type="text" class="form-control" placeholder="Tên đăng nhập" />
+                                </div>
+                            <?php } ?>
+                            <div class="form-group">
+                                <label for="pass">Mật khẩu</label>
+                                <input id="pass" name="pass" type="password" class="form-control" placeholder="Mật khẩu" />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input id="email" name="email" type="email" class="form-control" placeholder="Email" />
+                            </div>
+                            <div class="form-group">
+                                <label for="hoten">Họ tên</label>
+                                <input id="hoten" name="hoten" type="text" class="form-control" placeholder="Họ tên" />
+                            </div>
+                            <div class="form-group">
+                                <label for="sdt">Số điện thoại</label>
+                                <input id="sdt" name="sdt" type="tel" class="form-control" placeholder="Số điện thoại" />
+                            </div>
+                            <div class="form-group">
+                                <label for="dchi">Địa chỉ</label>
+                                <input id="dchi" name="dchi" type="text" class="form-control" placeholder="Địa chỉ" />
+                            </div>
+                            <div class="form-group">
+                                <label for="quyen">Chức vụ</label>
+                                <select id="quyen" name="quyen" class="form-control">
+                                    <option value="">Chọn chức vụ</option>
+                                    <option value="admin">Quản trị viên</option>
+                                    <option value="user">Người dùng</option>
+                                </select>
+                            </div>
+                            <div class="form-group text-center">
+                                <?php if(isset($_GET['id'])) { ?>
+                                    <button type="submit" name="sua" class="btn btn-primary">Sửa thông tin</button>
+                                <?php } else { ?>
+                                    <button type="submit" name="submit" class="btn btn-primary">Thêm người dùng</button>
+                                <?php } ?>
+                            </div>
+                        </form>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>

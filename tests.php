@@ -1,159 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-nav {
-  background-color: #f5f5f7;
-  height: 70px;
-}
 
-.menu {
-  display: flex;
-  justify-content: space-between;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
+  <head>
 
-.menu li {
-  position: relative;
-  margin: 0 1.5em;
-  height: 100%;
-}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
-.menu a {
-  color: #111;
-  text-decoration: none;
-  font-size: 1.2em;
-  padding: 0 1.5em;
-  display: flex;
-  align-items: center;
-  height: 100%;
-  transition: all 0.2s ease-in-out;
-}
+    <link rel="shortcut icon" href="./assets/fonts/apple.ico" type="image/x-icon">
+    <title>Apple Store</title>
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-.menu a:hover {
-  color: #007aff;
-}
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+  </head>
 
-.has-submenu:hover .submenu {
-  display: block;
-}
+  <body>
+  <?php include("header.php");?>
 
-.submenu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,.1);
-  width: 100%;
-}
+    <!-- Page Content -->
+    <div class="page-heading header-text">
+      <div class="text">
+            <h1>Thông tin giỏ hàng</h1>
+      </div>
+    </div>
 
-.submenu li {
-  display: block;
-  margin: 0;
-}
+    <section class="vh-100" style=" height: 700px; margin-top: 100;">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+      <div class="card mb-4">
+      <?php ;
+      $tongtien = 0;
+          if(isset($_SESSION['cart']))
+          {
+            ?>
+      <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Sản phẩm</th>
+      <th scope="col">Giá</th>
+      <th scope="col">Số lượng</th>
+      <th scope="col">Tổng cộng</th>
+      <th scope="col">Xóa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($_SESSION['cart'] as $item): ?>
+      <tr>
+        <td><?php echo $item['gia'] ?></td>
+        <td><?php echo $item['sl'] ?></td>
+        <td>
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button class="btn btn-default btn-sm" type="button" onclick="decreaseQuantity(<?php echo $item['id'] ?>)">-</button>
+            </span>
+            <input type="number" class="form-control form-control-sm" id="quantity_<?php echo $item['tensp'] ?>" name="quantity_<?php echo $item['id'] ?>" value="<?php echo $item['sl'] ?>" min="1" onchange="updateCart(<?php echo $item['tensp'] ?>)">
+            <span class="input-group-btn">
+              <button class="btn btn-default btn-sm" type="button" onclick="increaseQuantity(<?php echo $item['tensp'] ?>)">+</button>
+            </span>
+          </div>
+        </td>
+        <td><?php echo $item['subtotal'] ?></td>
+        <td>
+          <button type="button" class="btn btn-danger btn-sm" onclick="removeItem(<?php echo $item['id'] ?>)">Xóa</button>
+        </td>
+      </tr>
+    <?php endforeach; ?>
+  </tbody>
+</table>
+          <?php
+          }
+          else
+          {
+            echo "Giỏ hàng trống";
+          }
+          ?>
+         <div class="d-flex justify-content-end">
+         <a href="RemoveCard.php" type="button" class="btn btn-light btn-lg me-2">Xóa tất cả giỏ hàng</a>
+          <a href="products.php" type="button" class="btn btn-light btn-lg me-2">Tiếp tục mua hàng</a>
+          <form action="vnpay.php" method="POST">
+          <input type="submit" class="btn btn-primary btn-lg" name="redirect" value="Thanh toán" />
+          </form>
+         </div>
+    <?php include("footer.php");?>
 
-.submenu a {
-  font-size: 1.2em;
-  padding: 1em 1.5em;
-  display: block;
-  color: #111;
-  text-decoration: none;
-  transition: all 0.2s ease-in-out;
-}
-
-.submenu a:hover {
-  color: #007aff;
-  background-color: #f5f5f7;
-}
-
-/* Style for the Apple logo */
-.menu li:first-child a {
-  font-size: 2em;
-  font-weight: bold;
-  padding: 0;
-}
-
-/* Style for the search icon */
-.menu li:nth-child(6) a {
-  font-size: 1.2em;
-  padding: 0;
-}
-
-/* Style for the cart icon */
-.menu li:last-child a {
-  font-size: 1.2em;
-  position: relative;
-  padding: 0;
-}
-
-.menu li:last-child a:after {
-  content: '';
-  position: absolute;
-  top: -0.5em;
-  right: -0.5em;
-  width: 1.5em;
-  height: 1.5em;
-  background-color: #007aff;
-  border-radius: 50%;
-  color: #fff;
-  font-size: 0.8em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.menu li:last-child a:before {
-  content: '1';
-  position: absolute;
-  top: -0.5em;
-  right: -0.5em;
-  color: #fff;
-  font-size: 0.8;}
-    </style>
-</head>
-<body>
-<nav>
-  <ul class="menu">
-    <li><a href="#">Mac</a></li>
-    <li class="has-submenu">
-      <a href="#">iPad</a>
-      <ul class="submenu">
-        <li><a href="#">iPad Pro</a></li>
-        <li><a href="#">iPad Air</a></li>
-        <li><a href="#">iPad</a></li>
-        <li><a href="#">iPad mini</a></li>
-      </ul>
-    </li>
-    <li class="has-submenu">
-      <a href="#">iPhone</a>
-      <ul class="submenu">
-        <li><a href="#">iPhone 12</a></li>
-        <li><a href="#">iPhone 11</a></li>
-        <li><a href="#">iPhone SE</a></li>
-        <li><a href="#">iPhone XR</a></li>
-      </ul>
-    </li>
-    <li><a href="#">Watch</a></li>
-    <li><a href="#">TV</a></li>
-    <li><a href="#">Music</a></li>
-    <li><a href="#">Support</a></li>
-  </ul>
-</nav>
-<script>
-
-const menuToggle = document.querySelector('.menu-toggle');
-const menu = document.querySelector('.menu');
-
-menuToggle.addEventListener('click', function() {
-  menu.classList.toggle('show-menu');
-});
-</script>
-</body>
+  </body>
 </html>

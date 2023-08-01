@@ -16,7 +16,7 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-$vnp_Returnurl = "http://localhost/apple-store/thanhtoan.php";
+$vnp_Returnurl = "http://thuocle/apple-store/thanhtoan.php";
 $vnp_TmnCode = "2TDGTBXA";//Mã website tại VNPAY 
 $vnp_HashSecret = "FJSJJNFEYHCLXBLKIFFKHFYGKGVKWNID"; //Chuỗi bí mật
 

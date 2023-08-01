@@ -38,7 +38,7 @@
           mysqli_close($link);
           unset($_SESSION['cart']);
           $_SESSION['mess'] = "Đơn hàng của bạn đang được xử lý";
-          header(('Location:../apple-store/products.php'));
+          header(('Location:../thuocle/apple-store/products.php'));
     } else {
       echo "Error: " . $sql . "<br>" . mysqli_error($link);
     }
