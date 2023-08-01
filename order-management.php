@@ -84,7 +84,7 @@ if (isset($_GET['id'])) {
                                     <td><?php echo $row['Ngay']; ?></td>
                                     <td><?php echo number_format($row['TongTien'], 0, ',', '.'); ?></td>
                                     <td><?php echo $row['ten_trangthai']; ?></td>
-                                    <td><a href="./ServicesProcess.php?id=<?php echo $row['MaDonHang']?>">Xem chi tiết</a></td>
+                                    <td><a href="./OrderDetail.php?id=<?php echo $row['MaDonHang']?>">Xem chi tiết</a></td>
                                 </tr>
                                 <?php } ?>
                             </tbody>

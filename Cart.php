@@ -40,7 +40,7 @@
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col">
                     <div class="card mb-4">
-                        <?php session_start();
+                        <?php 
 $tongtien = 0;
 if(isset($_SESSION['cart']))
 {
