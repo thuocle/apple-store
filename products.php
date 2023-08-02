@@ -61,16 +61,7 @@ form.example::after {
   display: table;
 }
 </style>
-    <?php session_start();
-      function alert($msg) {
-        echo "<script type='text/javascript'>alert('$msg');</script>";
-    }
-    if(isset($_SESSION['mess']))
-    {
-      alert($_SESSION['mess']);
-      unset($_SESSION['mess']);
-    }
-    ?>
+    
   </head>
 
   <body>
@@ -91,6 +82,16 @@ form.example::after {
     <div class="services">
       <div class="container">
         <div class="row">
+        <?php 
+      function alert($msg) {
+        echo "<script type='text/javascript'>alert('$msg');</script>";
+    }
+    if(isset($_SESSION['mess']))
+    {
+      alert($_SESSION['mess']);
+      unset($_SESSION['mess']);
+    }
+    ?>
             <?php
               include('./config/db.php');
               $sql = "SELECT * FROM sanpham";

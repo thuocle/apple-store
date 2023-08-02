@@ -20,6 +20,7 @@
             echo "Error: " . $sql . "<br>" . mysqli_error($link);
           }
     }
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
     $time = date("Y-m-d H:i:s", time());
     $trangthai = 1;
     $ghichu = "Thanh toán ATM";

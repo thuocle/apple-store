@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <?php include("header.php"); //session_start()
+    <?php include("header.php"); 
     ?>
 
     <!-- Page Content -->
@@ -61,20 +61,20 @@ if(isset($_SESSION['cart']))
             ?>
                             <tr>
                                 <td style="width: 200; text-align: center;">
-                                    <img src="img/<?php echo $item['img'] ?>" height="100" width="100">
+                                    <img src="img/<?php echo $item['img'] ?>" height="150" width="150">
                                 </td>
                                 <td style="width: 200;text-align: center;"><?php echo $item['tensp'] ?></td>
                                 <!-- <td style="width: 200; text-align: center;">//<?php //echo $item['sl'] ?></td> -->
                                 <td style="width: 200; text-align: center;">
                                     <a class="btn btn-sm btn-danger decrease-quantity" type="submit"
-                                        href="./RemoveCard.php?tru=<?php echo $item['masp']?>"
+                                        href="./ProcessCart.php?tru=<?php echo $item['masp']?>"
                                         data-masp="<?php echo $item['masp'] ?>">-</a>
                                     <span class="quantity"
                                         data-masp="<?php echo $item['masp'] ?>"><?php echo $item['sl'] ?></span>
                                     <a class="btn btn-sm btn-success increase-quantity" type="submit"
-                                        href="./RemoveCard.php?cong=<?php echo $item['masp']?>"
+                                        href="./ProcessCart.php?cong=<?php echo $item['masp']?>"
                                         data-masp="<?php echo $item['masp'] ?>">+</a>
-                                    <a href="RemoveCard.php?idxoa=<?php echo $item['masp']?>"
+                                    <a href="ProcessCart.php?idxoa=<?php echo $item['masp']?>"
                                         class="btn btn-sm btn-outline-danger remove-product" type="button">Xóa</a>
                                 </td>
                                 <td style="width: 200; text-align: center;">
@@ -106,7 +106,7 @@ else
 }
 ?>
                         <div class="d-flex justify-content-end">
-                            <a href="RemoveCard.php?xoatatca=1" type="button" class="btn btn-light btn-lg me-2">Xóa tất
+                            <a href="ProcessCart.php?xoatatca=1" type="button" class="btn btn-light btn-lg me-2">Xóa tất
                                 cả giỏ hàng</a>
                             <a href="products.php" type="button" class="btn btn-light btn-lg me-2">Tiếp tục mua hàng</a>
                             <form action="vnpay.php" method="POST">
