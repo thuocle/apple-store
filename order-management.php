@@ -92,8 +92,16 @@ if (isset($_GET['id'])) {
                                      <td style="color: green;"><?php echo $row['ten_trangthai']; ?></td>
                                      <?php }
                                      ?>
+                                     
                                     <td><a href="./OrderDetail.php?id=<?php echo $row['MaDonHang']?>">Xem chi tiết</a></td>
+                                    <?php if($row['ten_trangthai'] == 'Đang xử lý'){ ?>
+                                    <td ></td>
+                                    <?php } else{
+                                     ?>
                                     <td><a href="./PrintInvoice.php?id=<?php echo $row['MaDonHang']?>">Xuất hóa đơn</a></td>
+                                     <?php }
+                                     ?>
+                                    
                                 </tr>
                                 <?php } ?>
                             </tbody>
