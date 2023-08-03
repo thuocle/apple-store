@@ -1,3 +1,4 @@
+<?php session_start();?>
 <header class="">
   <nav class="navbar navbar-expand-lg">
     <div class="container">
@@ -18,8 +19,8 @@
           <li class="nav-item dropdown">
             <a class="dropdown-toggle nav-link" data-toggle="dropdown" data-bs-toggle="dropdown">Danh mục</a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="products.php">Tất cả sản phẩm</a>
-              <?php session_start();
+              <!-- <a class="dropdown-item" href="products.php">Tất cả sản phẩm</a> -->
+              <?php 
                 include('./config/db.php');
                 $sql = "SELECT * FROM loaisp";
                 $result = $link->query($sql);

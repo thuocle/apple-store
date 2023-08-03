@@ -565,17 +565,20 @@ ul.slick-dots {
 	align-items: center;
 	justify-content: center;
 	border-bottom: 1px solid rgb(212, 210, 210);
+	min-height: 350px;
 }
 .service-item img {
+	height: 250px;
 	max-width: 250px;
-	max-height: 250px;
 	overflow: hidden;
+	object-fit: cover;
 }
 
 .service-item .down-content {
 	/* background-color: #f7f7f7; */
 	min-width: 250px;
 	max-width: fit-content;
+	min-height: 280px;
 	padding: 30px;
 	display: flex;
 	flex-direction: column;
@@ -1110,7 +1113,7 @@ footer .contact-form button.filled-button:hover {
 
 .page-heading {
 	text-align: center;
-	background-image: url(../images/ipad-pro_overview__glcw458o4byq_og.png);
+	background-image: url(../images/ip3.jpg);
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -1442,3 +1445,48 @@ h5 a:hover { color: inherit; }
 	margin-top: 5px;
 	user-select: none;
 }
+.scroll-menu-container {
+	white-space: nowrap;
+	padding: 10px 0;
+  }
+  
+  .scroll-menu {
+	display: inline-block;
+  }
+  
+  .menu-item {
+	display: inline-block;
+	margin-right: 20px;
+	text-align: center;
+	color: #666;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+  }
+  
+  .menu-item-image {
+	max-width: 60px;
+	height: auto;
+	margin-bottom: 10px;
+  }
+  
+  .menu-item-title {
+	display: block;
+  }
+  .scroll-menu {
+	display: flex;
+	justify-content: space-between;
+	overflow-x: auto;
+	padding: 10px 0;
+  }
+  
+  .menu-item {
+	flex: 0 0 auto;
+	margin-right: 20px;
+	text-align: center;
+  }
+  
+  .menu-item:last-child {
+	margin-right: 0;
+  }
