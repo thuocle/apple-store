@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
     <link rel="shortcut icon" href="./assets/fonts/apple.ico" type="image/x-icon">
+    <script src="./assets/js/app.js" defer></script>
     <title>Apple Store</title>
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

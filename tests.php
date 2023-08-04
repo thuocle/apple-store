@@ -1,94 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <title>Document</title>
+  <style>
+    table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  min-width: 600px;
+  border: 1px solid #000;
+  background-color: #f1f1f1;
+}
 
-  <head>
+th h2{
+  text-align: center !important;
+}
+table {
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+  }
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+  tr td:first-child {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+  }
+  td:nth-child(2) {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+  }
 
-    <link rel="shortcut icon" href="./assets/fonts/apple.ico" type="image/x-icon">
-    <title>Apple Store</title>
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
 
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/owl.css">
-  </head>
+  input[type="text"] {
+    width: 95%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
 
-  <body>
-  <?php include("header.php");?>
-
-    <!-- Page Content -->
-    <div class="page-heading header-text">
-      <div class="text">
-            <h1>Thông tin giỏ hàng</h1>
-      </div>
-    </div>
-
-    <section class="vh-100" style=" height: 700px; margin-top: 100;">
-  <div class="container h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col">
-      <div class="card mb-4">
-      <?php ;
-      $tongtien = 0;
-          if(isset($_SESSION['cart']))
-          {
-            ?>
-      <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Sản phẩm</th>
-      <th scope="col">Giá</th>
-      <th scope="col">Số lượng</th>
-      <th scope="col">Tổng cộng</th>
-      <th scope="col">Xóa</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($_SESSION['cart'] as $item): ?>
-      <tr>
-        <td><?php echo $item['gia'] ?></td>
-        <td><?php echo $item['sl'] ?></td>
-        <td>
-          <div class="input-group">
-            <span class="input-group-btn">
-              <button class="btn btn-default btn-sm" type="button" onclick="decreaseQuantity(<?php echo $item['id'] ?>)">-</button>
-            </span>
-            <input type="number" class="form-control form-control-sm" id="quantity_<?php echo $item['tensp'] ?>" name="quantity_<?php echo $item['id'] ?>" value="<?php echo $item['sl'] ?>" min="1" onchange="updateCart(<?php echo $item['tensp'] ?>)">
-            <span class="input-group-btn">
-              <button class="btn btn-default btn-sm" type="button" onclick="increaseQuantity(<?php echo $item['tensp'] ?>)">+</button>
-            </span>
-          </div>
-        </td>
-        <td><?php echo $item['subtotal'] ?></td>
-        <td>
-          <button type="button" class="btn btn-danger btn-sm" onclick="removeItem(<?php echo $item['id'] ?>)">Xóa</button>
-        </td>
-      </tr>
-    <?php endforeach; ?>
-  </tbody>
+  .submit-btn {
+    text-align: center !important;
+  }
+  </style>
+</head>
+<body>
+    <?php
+    function tachHoTen($hoTen) {
+        $hoTen = trim($hoTen);
+        $mangTen = explode(" ", $hoTen);
+        
+        $ho = $mangTen[0];
+        $ten = $mangTen[count($mangTen) - 1];
+        
+        $tenDem = "";
+        if (count($mangTen) > 3) {
+            $tenDem = implode(" ", array_slice($mangTen, 1, count($mangTen) - 2));
+        } elseif (count($mangTen) == 3) {
+            $tenDem = $mangTen[1];
+        }
+        
+        return array(
+            'ho' => $ho,
+            'tenDem' => $tenDem,
+            'ten' => $ten
+        );
+    }
+    ?>
+    
+        <form action="" method="post">
+        <?php 
+        $hoTen = $_POST["hoTen"];
+        $thongTin = tachHoTen($hoTen); ?>
+        <table>
+  <tr>
+    <th colspan="2" >
+      <h2>Tách họ và tên</h2>
+    </th>
+  </tr>
+  <tr>
+    <td><label for="hoTen">Họ Tên:</label></td>
+    <td><input type="text" id="hoTen" name="hoTen" required></td>
+  </tr>
+  <tr>
+    <td><label>Họ:</label></td>
+    <td><p><?php echo $thongTin['ho'] ?></p></td>
+  </tr>
+  <tr>
+    <td><label>Tên đệm:</label></td>
+    <td><p><?php echo $thongTin['tenDem'] ?></p></td>
+  </tr>
+  <tr>
+    <td><label>Tên:</label></td>
+    <td><p><?php echo $thongTin['ten'] ?></p></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="submit-btn">
+      <button type="submit" class="btn-success" style="height: 50px; width: 100px; border-radius: 10px;">Tách</button>
+    </td>
+  </tr>
 </table>
-          <?php
-          }
-          else
-          {
-            echo "Giỏ hàng trống";
-          }
-          ?>
-         <div class="d-flex justify-content-end">
-         <a href="RemoveCard.php" type="button" class="btn btn-light btn-lg me-2">Xóa tất cả giỏ hàng</a>
-          <a href="products.php" type="button" class="btn btn-light btn-lg me-2">Tiếp tục mua hàng</a>
-          <form action="vnpay.php" method="POST">
-          <input type="submit" class="btn btn-primary btn-lg" name="redirect" value="Thanh toán" />
-          </form>
-         </div>
-    <?php include("footer.php");?>
+    </form>
+  <?php   
+    ?>
+    <!-- HTML !-->
+<button class="button-33" role="button">Button 33</button>
 
-  </body>
+
+</body>
 </html>

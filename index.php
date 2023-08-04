@@ -9,6 +9,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./assets/fonts/apple.ico" type="image/x-icon">
+    <script src="./assets/js/app.js" defer></script>
     <title>Apple Store</title>
 
  <!-- Bootstrap core CSS -->
@@ -67,14 +68,14 @@
             <span>Hãy liên hệ ngay với chúng tôi.</span>
           </div>
           <div class="col-md-4">
-            <a href="contact.php" class="border-button">Liên hệ</a>
+            <a href="contact.php" class="button-85 border-button">Liên hệ</a>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Sản phẩm nổi bật -->
-    <div class="services">
+    <div class="services services-index">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -120,7 +121,7 @@
       </div>
     </div>
 
-    <div class="fun-facts">
+    <div class="fun-facts fun-facts-index">
       <div class="container">
         <div class="more-info-content">
           <div class="row">

@@ -10,8 +10,8 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
     <link rel="shortcut icon" href="./assets/fonts/apple.ico" type="image/x-icon">
-    <script src="./assets/js/app.js" defer></script>
-    <title>Tất cả sản phẩm</title>
+
+    <title>Tìm kiếm sản phẩm</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="./assets/js/app.js" defer></script>
     <style>
     h1 {
         color: #fff !important;
@@ -148,7 +149,7 @@
     </div>
 
     <?php include('./CategoryBar.php') ?>
-    <form class="example" action="SearchProduct.php" method="GET">
+    <form class="example" action="" method="GET">
         <div class="search-box">
             <button class="btn-search" type="submit"><i class="fas fa-search"></i></button>
             <input type="text" class="input-search" placeholder="Type to Search..." name="search">
@@ -169,15 +170,21 @@
     ?>
             <?php
 include('./config/db.php');
-// Số lượng sản phẩm trên mỗi trang
-$per_page = 3;
-// Tính toán vị trí bắt đầu của sản phẩm trong trang hiện tại
-$page = isset($_GET['page']) ? $_GET['page'] : 1;
-$start = ($page - 1) * $per_page;
-// Xây dựng truy vấn SQL để lấy sản phẩm cho trang hiện tại
-$sql = "SELECT * FROM sanpham ORDER BY MaSanPham ASC LIMIT $start, $per_page";
-// Thực thi truy vấn SQL và hiển thị sản phẩm trên trang web
+$results_per_page = 3;
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+} else {
+    $page = 1;
+}
+
+$start_index = ($page - 1) * $results_per_page;
+
+// Thực hiện truy vấn SQL để lấy kết quả tìm kiếm
+$search_query = urldecode($_GET['search']);// Giả sử người dùng đã submit ô tìm kiếm và truyền giá trị vào biến 'search'
+
+$sql = "SELECT * FROM sanpham WHERE TenSanPham LIKE '%$search_query%' LIMIT $start_index, $results_per_page";
 $result = $link->query($sql);
+
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
     echo '<div class="col-md-4">';
@@ -202,36 +209,40 @@ if ($result->num_rows > 0) {
     echo '<script>
     window.location.href = "404notfound.php";
 </script>';
+
 }
+$sql_count = "SELECT COUNT(*) AS total FROM sanpham WHERE TenSanPham LIKE '%$search_query%'";
+$count_result = $link->query($sql_count);
+$row_count = $count_result->fetch_assoc();
+$total_results = $row_count['total'];
+$total_pages = ceil($total_results / $results_per_page);
 ?>
         </div>
         <nav>
-            <ul class="pagination pagination-lg justify-content-center">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">«</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-                <?php
-      $sqltrang = mysqli_query($link,"SELECT * FROM sanpham");
-      $rowcount = mysqli_num_rows($sqltrang);
-      $page = ceil($rowcount/3);
-      for($i=1;$i<=$page;$i++) {
-    ?>
-                <li class="page-item"><a class="page-link"
-                        href="products.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
-                <?php }
-    ?>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">»</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
+    <ul class="pagination pagination-lg justify-content-center">
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">«</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        <?php
+        for ($i = 1; $i <= $total_pages; $i++) {
+            ?>
+            <li class="page-item">
+                <a class="page-link" href="SearchProduct.php?search=<?php echo $search_query?>&page=<?php echo $i ?>"><?php echo $i ?></a>
+            </li>
+            <?php
+        }
+        ?>
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">»</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>
         <br>
         <br>
         <br>

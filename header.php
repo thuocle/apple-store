@@ -11,15 +11,15 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="index.php">Trang chủ
-              <span class="sr-only">(current)</span>
+              <!-- <span class="sr-only">(current)</span> -->
             </a>
           </li>
           <li class="nav-item dropdown">
             <a class="dropdown-toggle nav-link" data-toggle="dropdown" data-bs-toggle="dropdown">Danh mục</a>
             <div class="dropdown-menu">
-              <!-- <a class="dropdown-item" href="products.php">Tất cả sản phẩm</a> -->
+              <a class="dropdown-item" href="products.php">Products</a>
               <?php 
                 include('./config/db.php');
                 $sql = "SELECT * FROM loaisp";
