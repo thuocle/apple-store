@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Login</title>
-    <link href="css/styles.css" rel="stylesheet" />
-
-    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-    <link rel="shortcut icon" href="../assets/fonts/apple.ico" type="image/x-icon">
     <?php session_start();
         if(isset($_POST['email']) && isset($_POST['pass'])) {
             $user = $_POST['email'];
@@ -33,12 +19,12 @@
             }
         }
             else
-            echo "<script type='text/javascript'>alert('Sai tên tài khoản hoặc mật khẩu');</script>";
+            echo "<script>if(confirm('Sai tên hoặc mật khẩu!')){window.location.href='../Login/GoogleLogin.php'};</script>";
         }
         ?>
-</head>
+<!-- </head> -->
 
-<body class="bg-primary">
+<!-- <body class="bg-primary">
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
             <main>
@@ -85,8 +71,8 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
-    <script src="js/scripts.js"></script>
-    <script>
+    <script src="js/scripts.js"></script> -->
+    <!-- <script>
   var passwordInput = document.getElementById("inputPassword");
   var showPasswordButton = document.getElementById("show-password");
   showPasswordButton.addEventListener("click", function() {
@@ -98,7 +84,4 @@
       showPasswordButton.textContent = "Hiện mật khẩu";
     }
   });
-</script>
-</body>
-
-</html>
+</script> -->

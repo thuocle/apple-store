@@ -53,21 +53,32 @@
 include('./config/db.php');
 if (isset($_GET['id'])) {
     $username = $_GET['id'];
+    $ggid = $_GET['id'];
     $sql = "SELECT donhang.*, trangthai.*
     FROM donhang
     JOIN trangthai ON donhang.TrangThai = trangthai.trangthai_id
-    WHERE TenDangNhap='$username'
+    WHERE TenDangNhap='$username' 
+    ORDER BY Ngay DESC";
+    $sql2 = "SELECT donhang.*, trangthai.*
+    FROM donhang
+    JOIN trangthai ON donhang.TrangThai = trangthai.trangthai_id
+    WHERE google_id='$ggid' 
     ORDER BY Ngay DESC";
     $result = mysqli_query($link, $sql);
+    $result2 = mysqli_query($link, $sql2);
 
     if (!$result) {
         die("Lỗi truy vấn: " . mysqli_error($link));
     }
     $row = mysqli_fetch_assoc($result);
     mysqli_close($link);
-}
+    if (!isset($row['TenDangNhap']) && !isset($row['google_id'])) {
+        // Kiểm tra giá trị của cột 'TenDangNhap' và 'google_id'
+        echo '<h3>Ban chua co don hang nao!</h3>';
+    }else{
+
 ?>
-                    <h1>Danh sách đơn hàng của bạn <i style="color: green;"><?php echo $row['TenDangNhap']; ?></i></h1>
+                    <h1>Danh sách đơn hàng của bạn <i style="color: green;"><?php echo $row['TenDangNhap'] != null ? $row['TenDangNhap'] : "" ?></i></h1>
                     <div class="table-responsive table-bordered">
                         <table class="table table-striped">
                             <thead>
@@ -108,10 +119,9 @@ if (isset($_GET['id'])) {
                             </tbody>
                         </table>
                     </div>
-                <!-- </div> -->
             <!-- </div> -->
     </section>
 </body>
+<?php } } ?>
 <?php include("footer.php");?>
-
 </html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,7 +9,7 @@
     <meta name="author" content="" />
     <title>Register - Apple Admin</title>
     <link href="css/styles.css" rel="stylesheet" />
-    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script> -->
     <?php 
         include('../config/db.php');
         if(isset($_POST['submit']))
@@ -26,7 +26,7 @@
             }
             $sql = "INSERT INTO `users`(`TenDangNhap`, `MatKhau`, `Email`, `HoTen`, `DiaChi`, `Quyen`) VALUES ('$user','$pass','$email','$name', '$adress',0)";
             if(mysqli_query($link,$sql)) {
-                echo "<script>if(confirm('Đăng ký thành công! Mời bạn đăng nhập để trải nghiệm mua sắm!')){window.location.href='../admin/login.php'};</script>";
+                echo "<script>if(confirm('Đăng ký thành công! Mời bạn đăng nhập để trải nghiệm mua sắm!')){window.location.href='../Login/GoogleLogin.php'};</script>";
                 // exit(); // kết thúc kịch bản PHP để đảm bảo không có mã nào được thực thi sau khi chuyển hướng
             } else {
                 echo "<script type='text/javascript'>alert('Vui lòng thử lại');</script>";
@@ -39,9 +39,9 @@
         }
     }
         ?>
-</head>
+<!-- </head> -->
 
-<body class="bg-primary">
+<!-- <body class="bg-primary">
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
             <main>
@@ -54,20 +54,7 @@
                                 </div>
                                 <div class="card-body">
                                     <form action="" method="POST">
-                                        <!-- <div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" name="ho" id="inputFirstName" type="text" placeholder="Enter your first name" />
-                                                        <label for="inputFirstName">First name</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating">
-                                                        <input class="form-control" name="ten" id="inputLastName" type="text" placeholder="Enter your last name" />
-                                                        <label for="inputLastName">Last name</label>
-                                                    </div>
-                                                </div>
-                                            </div> -->
+                                       
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="" name="hoten" type="text"
                                                 placeholder="Enter your name" />
@@ -139,4 +126,4 @@
     <script src="js/scripts.js"></script>
 </body>
 
-</html>
+</html> -->

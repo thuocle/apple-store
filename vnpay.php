@@ -87,6 +87,6 @@ else{
 else
 {
     $_SESSION['mess'] = "Vui lòng đăng nhập để tiếp tục";
-    header(('Location:../apple-store/admin/login.php'));
+    header(('Location:../apple-store/Login/GoogleLogin.php'));
 }
 ?>

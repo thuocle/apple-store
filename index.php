@@ -102,12 +102,12 @@
                 echo '<span>';
                 $gia = $row["GiaSanPham"];
                 $gia_dinh_dang = number_format($gia, 0, ',', '.');
-                echo '<p>Từ '.$gia_dinh_dang.'đ</p>';
+                echo '<p style="color:green;">Từ '.$gia_dinh_dang.'đ</p>';
                 echo ' </span>'; 
                 echo '</div>';
                 //echo '<p>'. $row["Ram"] .' </p>';
                 //echo '<p>'. $row["BoNho"] .' </p>';
-                echo '<a href="product-details.php?masp='. $row["MaSanPham"] .' " class="filled-button">Mua</a>';
+                echo '<a href="product-details.php?masp='. $row["MaSanPham"] .' " class="button-85 border-button">Mua</a>';
                 echo '</div>';
                 echo '</div>';
                 echo '<br>';
@@ -135,7 +135,7 @@
                 <span>Who we are</span>
                 <h2>Get to know about <em>our company</em></h2>
                 <p>Curabitur pulvinar sem a leo tempus facilisis. Sed non sagittis neque. Nulla conse quat tellus nibh, id molestie felis sagittis ut. Nam ullamcorper tempus ipsum in cursus</p>
-                <a href="about.php" class="filled-button">Read More</a>
+                <a href="about.php" class="button-85 border-button">Read More</a>
               </div>
             </div>
           </div>

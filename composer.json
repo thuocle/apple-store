@@ -1,7 +1,8 @@
 {
     "require": {
         "psr/log": "^3.0"
-    },
+    }   
+    ,
     "require": {
         "google/apiclient": "^2.0"
     }

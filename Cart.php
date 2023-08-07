@@ -21,7 +21,15 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/owl.css">
     <style>
-
+        td>img{
+            max-width: 150px;
+            padding: 10px;
+            
+        }
+        .btn{
+            min-width:30px;
+            margin:5px;
+        }
     </style>
 </head>
 
@@ -36,7 +44,7 @@
         </div>
     </div>
 
-    <section class="vh-100" style=" height: 700px; margin-top: 100;">
+    <section class="vh-100" style="min-height: 400px; margin-top: 100px;">
         <div class="container h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col">
@@ -62,7 +70,7 @@ if(isset($_SESSION['cart']))
             ?>
                             <tr>
                                 <td style="width: 200; text-align: center;">
-                                    <img src="img/<?php echo $item['img'] ?>" height="150" width="150">
+                                    <img src="img/<?php echo $item['img'] ?>" >
                                 </td>
                                 <td style="width: 200;text-align: center;"><?php echo $item['tensp'] ?></td>
                                 <!-- <td style="width: 200; text-align: center;">//<?php //echo $item['sl'] ?></td> -->
@@ -111,7 +119,7 @@ else
                                 cả giỏ hàng</a>
                             <a href="products.php" type="button" class="btn btn-light btn-lg me-2">Tiếp tục mua hàng</a>
                             <form action="vnpay.php" method="POST">
-                                <input type="submit" class="btn btn-primary btn-lg" name="redirect"
+                                <input type="submit" class="btn btn-success btn-lg" name="redirect"
                                     value="Thanh toán" />
                             </form>
                         </div>

@@ -51,19 +51,27 @@
           ?>
           
             <li class="nav-item dropdown">
-            <a class="dropdown-toggle nav-link" data-toggle="dropdown" data-bs-toggle="dropdown">Xin chào<?php echo " ".$_SESSION['user']?></a>
+            <a class="dropdown-toggle nav-link" data-toggle="dropdown" data-bs-toggle="dropdown">Xin chào <?php echo $_SESSION['user']?></a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="../apple-store/admin/logout.php">Đăng xuất</a>
               <?php 
               $ten = $_SESSION['user'];
-                $sql1 = "SELECT * FROM users WHERE TenDangNhap = '$ten'";
+                $sql1 = "SELECT * FROM users WHERE TenDangNhap = '$ten' ";
+                $sql2 = "SELECT * FROM google_users WHERE google_name = '$ten' ";
                 $result2 = $link->query($sql1);
+                $result3 = $link->query($sql2);
                 if ($result2->num_rows > 0) {
                 // output data of each row
                 while($roww = $result2->fetch_assoc()) {
               ?>
             <a class="dropdown-item" href="./order-management.php?id=<?php echo $roww['TenDangNhap']?>">Quản lý đơn hàng</a>
-            <?php } }?>   
+            <?php } }
+          if ($result3->num_rows > 0){
+              $row2 = $result3->fetch_assoc();
+              ?>
+              <a class="dropdown-item" href="./order-management.php?id=<?php echo $row2['google_id']?>">Quản lý đơn hàng</a>
+              <?php
+            }?>   
           </li>
             </div>
           </li>
@@ -74,7 +82,7 @@
           } else {
           ?>
             <li class="nav-item">
-              <a class="nav-link" href="./admin/login.php">Đăng nhập</a>
+              <a class="nav-link" href="./Login/GoogleLogin.php">Đăng nhập</a>
             </li>
           <?php
           }
