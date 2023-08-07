@@ -3,7 +3,7 @@ if(isset($_SESSION['user']))
 {
 if(isset($_SESSION['cart']))
 {
-$temp = rand(1,10000);
+$temp = rand(1,10000000);
 include('./config/db.php');
 $tongtien = 0;
 foreach($_SESSION['cart'] as $item)

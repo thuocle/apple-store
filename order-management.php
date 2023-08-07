@@ -49,36 +49,35 @@
     <section class="vh-100" style="  min-width: 500px; margin-top: 100;">
         <!-- <div class="container h-50"> -->
             <!-- <div class="row d-flex justify-content-center align-items-center h-30"> -->
-                    <?php
-include('./config/db.php');
-if (isset($_GET['id'])) {
-    $username = $_GET['id'];
-    $ggid = $_GET['id'];
-    $sql = "SELECT donhang.*, trangthai.*
-    FROM donhang
-    JOIN trangthai ON donhang.TrangThai = trangthai.trangthai_id
-    WHERE TenDangNhap='$username' 
-    ORDER BY Ngay DESC";
-    $sql2 = "SELECT donhang.*, trangthai.*
-    FROM donhang
-    JOIN trangthai ON donhang.TrangThai = trangthai.trangthai_id
-    WHERE google_id='$ggid' 
-    ORDER BY Ngay DESC";
-    $result = mysqli_query($link, $sql);
-    $result2 = mysqli_query($link, $sql2);
-
-    if (!$result) {
-        die("Lỗi truy vấn: " . mysqli_error($link));
-    }
-    $row = mysqli_fetch_assoc($result);
-    mysqli_close($link);
-    if (!isset($row['TenDangNhap']) && !isset($row['google_id'])) {
-        // Kiểm tra giá trị của cột 'TenDangNhap' và 'google_id'
-        echo '<h3>Ban chua co don hang nao!</h3>';
-    }else{
-
-?>
-                    <h1>Danh sách đơn hàng của bạn <i style="color: green;"><?php echo $row['TenDangNhap'] != null ? $row['TenDangNhap'] : "" ?></i></h1>
+            <?php
+            include('./config/db.php');
+            if (isset($_GET['id'])) {
+                $username = $_GET['id'];
+                $ggid = $_GET['id'];
+                $sql = "SELECT donhang.*, trangthai.*
+                        FROM donhang
+                        JOIN trangthai ON donhang.TrangThai = trangthai.trangthai_id
+                        WHERE TenDangNhap='$username' 
+                        ORDER BY Ngay DESC";
+                $sql2 = "SELECT donhang.*, trangthai.*
+                        FROM donhang
+                        JOIN trangthai ON donhang.TrangThai = trangthai.trangthai_id
+                        WHERE google_id='$ggid' 
+                        ORDER BY Ngay DESC";
+                $result = mysqli_query($link, $sql);
+                $result2 = mysqli_query($link, $sql2);
+                if (!$result || !$result2) {
+                    die("Lỗi truy vấn: " . mysqli_error($link));
+                }
+                $row = mysqli_fetch_assoc($result);
+                $row2 = mysqli_fetch_assoc($result2);
+                mysqli_close($link);
+                if (!isset($row['TenDangNhap']) && !isset($row2['google_id'])) {
+                    echo '<h3>Bạn chưa có đơn hàng nào!</h3>';
+                } else {
+                    $username = isset($row['TenDangNhap']) ? $row['TenDangNhap'] : "";
+            ?>
+                    <h1>Danh sách đơn hàng của bạn <i style="color: green;"><?php echo  $username ?></i></h1>
                     <div class="table-responsive table-bordered">
                         <table class="table table-striped">
                             <thead>
@@ -96,8 +95,8 @@ if (isset($_GET['id'])) {
                                 <tr>
                                     <td><?php echo $row['MaDonHang'] ?></td>
                                     <td><?php echo $row['Ngay']; ?></td>
-                                    <td><?php echo number_format($row['TongTien'], 0, ',', '.'); ?></td>
-                                    <?php if($row['ten_trangthai'] == 'Đang xử lý'){ ?>
+                                    <td><?php echo number_format($row['TongTien'], 0, ',', '.');?></td>
+                                    <?php if($row['trangthai_id'] == 1){ ?>
                                     <td style="color: red;"><?php echo $row['ten_trangthai']; ?></td>
                                     <?php } else{
                                      ?>
@@ -106,7 +105,7 @@ if (isset($_GET['id'])) {
                                      ?>
                                      
                                     <td><a href="./OrderDetail.php?id=<?php echo $row['MaDonHang']?>">Xem chi tiết</a></td>
-                                    <?php if($row['ten_trangthai'] == 'Đang xử lý'){ ?>
+                                    <?php if($row['trangthai_id'] == 1){ ?>
                                     <td ></td>
                                     <?php } else{
                                      ?>
@@ -116,8 +115,34 @@ if (isset($_GET['id'])) {
                                     
                                 </tr>
                                 <?php } ?>
+                                <?php mysqli_data_seek($result2, 0); // Đưa con trỏ về đầu dữ liệu ?>
+                                <?php while ($row2 = mysqli_fetch_assoc($result2)) { ?>
+                                <tr>
+                                    <td><?php echo $row2['MaDonHang'] ?></td>
+                                    <td><?php echo $row2['Ngay']; ?></td>
+                                    <td><?php echo number_format($row2['TongTien'], 0, ',', '.'); ?></td>
+                                    <?php if($row2['trangthai_id'] == 1){ ?>
+                                    <td style="color: red;"><?php echo $row2['ten_trangthai']; ?></td>
+                                    <?php } else{
+                                     ?>
+                                     <td style="color: green;"><?php echo $row2['ten_trangthai']; ?></td>
+                                     <?php }
+                                     ?>
+                                     
+                                    <td><a href="./OrderDetail.php?id=<?php echo $row2['MaDonHang']?>">Xem chi tiết</a></td>
+                                    <?php if($row2['trangthai_id'] == 1){ ?>
+                                    <td ></td>
+                                    <?php } else{
+                                     ?>
+                                    <td><a href="./PrintInvoice.php?id=<?php echo $row2['MaDonHang']?>">Xuất hóa đơn</a></td>
+                                     <?php }
+                                     ?>
+                                    
+                                </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
+                    </div>
                     </div>
             <!-- </div> -->
     </section>

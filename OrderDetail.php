@@ -53,6 +53,7 @@
     img {
         max-width: 100px;
         max-height: 100px;
+        object-fit: cover;
     }
     table.rounded {
         border-radius: 8px !important;
@@ -74,7 +75,7 @@
             <h1>Thông tin đơn hàng</h1>
         </div>
     </div>
-    <section class="vh-100" style="min-height: 500px; margin-top: 100;">
+    <section class="vh-100" style="min-height: 400px; margin-top: 100;">
         <div class="container">
             <h1>Chi tiết đơn hàng của bạn</h1>
             <div class="table-responsive">
@@ -120,8 +121,7 @@
                         <?php mysqli_data_seek($result, 0); // Đưa con trỏ về đầu dữ liệu ?>
                         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                         <tr>
-                            <td style="text-align: center;"><img src="img/<?php echo $row['HinhAnh'] ?>" height="100"
-                                    width="100"></td>
+                            <td style="text-align: center;"><img src="img/<?php echo $row['HinhAnh'] ?>"></td>
                             <td><?php echo $row['TenSanPham'] ?>
                             <td><?php echo $row['SoLuong'] ?>
                             <td><?php echo number_format($row['GiaSanPham'], 0, ',', '.') ?>
