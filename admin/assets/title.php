@@ -15,6 +15,6 @@
                             
                                  }     else
                             {
-                                header(('Location:../admin/login.php'));
+                                header(('Location:../Login/GoogleLogin.php'));
                             }
                         ?>

@@ -21,6 +21,7 @@ if (isset($_SESSION['cart'])) {
       $ggid = $row['google_id'];
       // Thực hiện các xử lý liên quan đến tài khoản Google
       $quey = "INSERT INTO donhang (MaDonHang, Ngay, DiaChi, TongTien, TrangThai, GhiChu, google_id) VALUES ('$madh','$time','$diachi','$tongtien','$trangthai','$ghichu','$ggid')";
+      $query = "INSERT INTO lichsudonhang VALUES ('$madh','$trangthai','$time')";
       if (mysqli_query($link, $quey)) {
         echo "New record created successfully";
         foreach ($_SESSION['cart'] as $item) {
@@ -50,6 +51,7 @@ if (isset($_SESSION['cart'])) {
         }
       }
       $quey = "INSERT INTO donhang (MaDonHang, Ngay, DiaChi, TongTien, TrangThai, GhiChu, TenDangNhap) VALUES ('$madh','$time','$diachi','$tongtien','$trangthai','$ghichu','$id')";
+      $query = "INSERT INTO lichsudonhang VALUES ('$madh','$trangthai','$time')";
       if (mysqli_query($link, $quey)) {
         echo "New record created successfully";
         foreach ($_SESSION['cart'] as $item) {

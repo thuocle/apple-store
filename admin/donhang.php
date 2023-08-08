@@ -4,7 +4,6 @@
 <?php
     include('../admin/assets/title.php');
     include('../config/db.php');
-
     if (isset($_GET['id']) && isset($_POST['status'])) {
         $orderId = $_GET['id'];
         $status = $_POST['status'];
@@ -27,9 +26,9 @@
                 }
                 break;
             case '2':
-                if ($status == 3 || $status == 5) {
+                if ($status == 3) {
                     $validStatusChange = true;
-                    $newStatus = ($status == 3) ? 3 : 5;
+                    $newStatus = 3;
                 }
                 break;
             case '3':
@@ -42,6 +41,12 @@
                 if ($status == 6) {
                     $validStatusChange = true;
                     $newStatus = 6;
+                }
+                break;
+            case '8':
+                if ($status == 7 || $status == 5)  {
+                    $validStatusChange = true;
+                    $newStatus = ($status == 7) ? 7 : 5;
                 }
                 break;
             default:
@@ -66,7 +71,6 @@
     }
 ?>
 </head>
-
 <body class="sb-nav-fixed"> <?php include("../admin/assets/header.php");?> <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
@@ -119,20 +123,24 @@
                                         <td><?php echo $name ?></td>
                                         <td><?php echo $row['Ngay'] ?></td>
                                         <td><?php echo $dc ?></td>
-                                        <td style="color: red;">
+                                        <td style="color: red;font-weight: 600;">
                                             <?php echo number_format($row['TongTien'], 0, ',', '.') . ' VNĐ' ?></td>
                                         <?php
                                         if ($row['ten_trangthai'] == 'Hoàn thành' ) {
                                             ?>
                                         <td style="color: green;"><?php echo  'Hoàn thành' ?></td>
                                         <?php
-                                        } else if($row['ten_trangthai'] =='Chờ xác nhận') {
+                                        } else if($row['ten_trangthai'] =='Chờ lấy hàng' ||$row['ten_trangthai'] =='Chờ xác nhận') {
                                             ?>
-                                        <td><?php echo $row['ten_trangthai']?></td>
+                                        <td style="color: blue;"><?php echo $row['ten_trangthai']?></td>
+                                        <?php
+                                        }else if($row['ten_trangthai'] =='Đang giao hàng') {
+                                            ?>
+                                        <td style="color: orange;"><?php echo $row['ten_trangthai']?></td>
                                         <?php
                                         }else {
                                             ?>
-                                        <td><?php echo $row['ten_trangthai']?></td>
+                                        <td style="color: red;"><?php echo $row['ten_trangthai']?></td>
                                         <?php } ?>
                                         <td><?php echo $row['GhiChu'] ?></td>
                                         <td style="text-align: center;">
@@ -141,13 +149,24 @@
                                                 <select name="status">
                                                     <option value="2">Chờ lấy hàng</option>
                                                     <option value="3">Đang giao</option>
-                                                    <option value="4">Hoàn thành</option>
+                                                    <!-- <option value="4">Hoàn thành</option> -->
                                                     <option value="5">Đã hủy</option>
                                                     <option value="6">Trả hàng</option>
+                                                    <option value="7">Từ chối hủy đơn</option>
                                                 </select>
                                                 <input type="submit" value="Cập nhật" class="btn btn-success">
                                             </form>
                                         </td>
+                                        <td>
+                                        <?php if(isset($_GET['huy']) && isset($_POST['submit'] )){
+                                            $huyid = $_GET['huy'];
+                                            $qr="UPDATE donhang SET TrangThai = 5 WHERE MaDonHang = $huyid"
+                                            ?>
+                                            <form action="" method="post">
+                                            <button class="btn btn-danger" href="" name="submit">Chấp nhận hủy đơn</button>
+                                            </form>
+                                            </td>
+                                            <?php } ?>
                                     </tr> <?php } } ?>
                                 </tbody>
                             </table>
@@ -162,6 +181,10 @@
 
             .odd {
                 background-color: #ffffff;
+            }
+            td, th{
+                min-width: 50px;
+                font-size: 14px;
             }
             </style>
         </main>

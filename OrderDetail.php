@@ -55,10 +55,12 @@
         max-height: 100px;
         object-fit: cover;
     }
+
     table.rounded {
         border-radius: 8px !important;
         overflow: hidden;
     }
+
     table.rounded th,
     table.rounded td {
         border: 1px solid white;
@@ -102,7 +104,6 @@
                 }
                 $row = mysqli_fetch_assoc($result);
             }
-            mysqli_close($link);
         ?>
                         <tr>
                             <td colspan="2"><?php echo $row['MaDonHang'] ?></td>
@@ -146,14 +147,85 @@
                     </tbody>
                 </table>
             </div>
-            <?php mysqli_data_seek($result, 0); 
-            $row = mysqli_fetch_assoc($result);
-            if($row['TrangThai'] == 2) {
-            // Đưa con trỏ về đầu dữ liệu ?>
-            <button class="btn btn-success d-print-none font-weight-bold" onclick="window.open('PrintInvoice.php?id=<?php echo $row['MaDonHang']?>')">In hóa đơn</button>
-            <?php }else{ ?>
-                <p style="color:red">Đơn hàng của bạn đang được xử lý</p>
-            <?php }?>
+            <?php
+mysqli_data_seek($result, 0);
+$row = mysqli_fetch_assoc($result);
+
+if ($row['TrangThai'] == 4) {
+    // Đơn hàng đã được giao tới và đã được xác nhận nhận hàng
+    ?>
+            <button class="btn btn-success d-print-none font-weight-bold"
+                onclick="window.open('PrintInvoice.php?id=<?php echo $row['MaDonHang']?>')">In hóa đơn</button>
+                
+            <?php
+} else if ($row['TrangThai'] == 1) {
+    if (isset($_POST['submit'])) {
+        $newStatus = 8;
+        $updateQuery = "UPDATE donhang SET TrangThai = $newStatus WHERE MaDonHang = '$madh'";
+        $updateResult = mysqli_query($link, $updateQuery);
+        if (!$updateResult) {
+            die("Lỗi cập nhật trạng thái: " . mysqli_error($link));
+        }
+        $row['TrangThai'] = $newStatus; // Cập nhật trạng thái mới
+    }
+    ?>
+            <p style="color:red">Đặt hàng thành công!</p>
+            <form action="" method="post">
+        <button class="btn btn-danger" type="submit" name="submit">Yêu cầu hủy đơn</button>
+    </form>
+            <?php
+} else if ($row['TrangThai'] == 2) {
+    if (isset($_POST['submit'])) {
+        $newStatus = 8;
+        $updateQuery = "UPDATE donhang SET TrangThai = $newStatus WHERE MaDonHang = '$madh'";
+        $updateResult = mysqli_query($link, $updateQuery);
+        if (!$updateResult) {
+            die("Lỗi cập nhật trạng thái: " . mysqli_error($link));
+        }
+        $row['TrangThai'] = $newStatus; // Cập nhật trạng thái mới
+    }
+    ?>
+            <p style="color:red">Đang chuẩn bị hàng!</p>
+            <form action="" method="post">
+        <button class="btn btn-danger" type="submit" name="submit">Yêu cầu hủy đơn</button>
+    </form>
+            <?php
+} 
+else if ($row['TrangThai'] == 3) {
+    if (isset($_POST['submit'])) {
+        $newStatus = 4;
+        $updateQuery = "UPDATE donhang SET TrangThai = $newStatus WHERE MaDonHang = '$madh'";
+        $updateResult = mysqli_query($link, $updateQuery);
+        if (!$updateResult) {
+            die("Lỗi cập nhật trạng thái: " . mysqli_error($link));
+        }
+        $row['TrangThai'] = $newStatus; // Cập nhật trạng thái mới
+    }
+    ?>
+    <p style="color:red">Đơn hàng đang được giao tới!</p>
+    <form action="" method="post">
+        <button class="btn btn-danger" type="submit" name="submit">Đã nhận hàng</button>
+    </form>
+            <?php
+} 
+else if ($row['TrangThai'] == 7) {
+    if (isset($_POST['submit'])) {
+        $newStatus = 3;
+        $updateQuery = "UPDATE donhang SET TrangThai = $newStatus WHERE MaDonHang = '$madh'";
+        $updateResult = mysqli_query($link, $updateQuery);
+        if (!$updateResult) {
+            die("Lỗi cập nhật trạng thái: " . mysqli_error($link));
+        }
+        $row['TrangThai'] = $newStatus; // Cập nhật trạng thái mới
+    }
+    ?>
+    <p style="color:red">Đơn hàng đã giao cho vận chuyển không thể hủy!</p>
+    <form action="" method="post">
+        <button class="btn btn-danger" type="submit" name="submit">Tiếp tục giao hàng</button>
+    </form>
+    <?php
+}
+?>
         </div>
     </section>
     <?php include("footer.php"); ?>
