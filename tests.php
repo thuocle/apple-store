@@ -103,6 +103,7 @@ table {
   <tr>
     <td colspan="2" class="submit-btn">
       <button type="submit" class="btn-success" style="height: 50px; width: 100px; border-radius: 10px;">Tách</button>
+      <button type="" class="btn-success" style="height: 50px; width: 100px; border-radius: 10px;">Xóa</button>
     </td>
   </tr>
 </table>
@@ -110,8 +111,5 @@ table {
   <?php   
     ?>
     <!-- HTML !-->
-<button class="button-33" role="button">Button 33</button>
-
-
 </body>
 </html>

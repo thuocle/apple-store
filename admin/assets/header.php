@@ -45,6 +45,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Người dùng
                             </a>
+                            <a class="nav-link" href="google-user.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Người dùng Google
+                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

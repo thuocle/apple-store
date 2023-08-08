@@ -12,6 +12,8 @@ foreach($_SESSION['cart'] as $item)
     $dongia = $item['gia'];
     $tongtien += $sl * $dongia;
 }
+$ggname = $_SESSION['user'];
+$sql = "SELECT * FROM google_users WHERE google_name ='$ggname'";
 error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <?php include("../admin/assets/title.php");?>
 </head>
@@ -10,14 +9,14 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Danh sách người dùng</h1>
+                <h1 class="mt-4">Danh sách người dùng Google</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="index.php">Trang chủ</a></li>
                     <li class="breadcrumb-item active">Danh mục người dung </li>
                 </ol>
                 <div class="card mb-4">
                     <div class="card-body">
-                        <td><a style="text-decoration: none" href="adduser.php" class="btn btn-primary">Thêm người dùng</a></td>
+                        <td><a style="text-decoration: none" href="add_google_user.php" class="btn btn-primary">Thêm người dùng</a></td>
                     </div>
                 </div>
                 <div class="card mb-4">
@@ -29,48 +28,43 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Tên đăng nhập</th>
-                                    <th>Mật khẩu</th>
-                                    <th>Email</th>
-                                    <th>Họ tên</th>
-                                    <th>Số điện thoại</th>
+                                    <th>google_id</th>
+                                    <th>google_name</th>
+                                    <th>google_email</th>
+                                    <th>google_link</th>
+                                    <th>google_picture_link</th>
                                     <th>Địa chỉ</th>
-                                    <th>Quyền</th>
                                     <th></th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
-                        include('../config/db.php');
-                        $sql = "SELECT * FROM users";
-                        if ($result = mysqli_query($link, $sql)) {
-                            $i = 0;
-                            while ($row = mysqli_fetch_array($result)) {
-                                $i++;
-                        ?>
-                                <tr <?php if ($i % 2 == 0) echo 'class="table-secondary"'; ?>>
-                                    <td><?php echo $row['TenDangNhap'] ?></td>
-                                    <td><?php echo $row['MatKhau'] ?></td>
-                                    <td><?php echo $row['Email'] ?></td>
-                                    <td><?php echo $row['HoTen'] ?></td>
-                                    <td><?php echo $row['SDT'] ?></td>
-                                    <td><?php echo $row['DiaChi'] ?></td>
-                                    <td><?php echo $row['Quyen'] ?></td>
-                                    <td style="text-align: center;">
-                                        <a href="adduser.php?id=<?php echo $row['TenDangNhap'] ?>"
-                                            class="btn-edit">Sửa</a>
-                                    </td>
-                                    <td style="text-align: center;">
-                                        <a href="javascript:void(0)" class="btn-delete"
-                                            onclick="confirmDelete('<?php echo $row["TenDangNhap"] ?>')">Xóa</a>
-                                    </td>
-
-                                </tr>
-                                <?php
-                            }
-                        }
-                        ?>
+                            <?php
+include('../config/db.php');
+$sql = "SELECT * FROM google_users";
+if ($result = mysqli_query($link, $sql)) {
+    $i = 0;
+    while ($row = mysqli_fetch_array($result)) {
+        $i++;
+        ?>
+        <tr <?php if ($i % 2 == 0) echo 'class="table-secondary"'; ?>>
+            <td><?php echo $row['google_id'] ?></td>
+            <td><?php echo $row['google_name'] ?></td>
+            <td><?php echo $row['google_email'] ?></td>
+            <td><?php echo $row['google_link'] ?></td>
+            <td><?php echo $row['google_picture_link'] ?></td>
+            <td><?php echo $row['DiaChi'] ?></td>
+            <td style="text-align: center;">
+                <a href="edit_google_user.php?id=<?php echo $row['google_id'] ?>" class="btn-edit">Sửa</a>
+            </td>
+            <td style="text-align: center;">
+            <a href="delete_google_user.php?id=<?php echo $row['google_id'] ?>" class="btn-delete">Xóa</a>
+            </td>
+        </tr>
+        <?php
+    }
+}
+?>
                             </tbody>
                         </table>
                     </div>

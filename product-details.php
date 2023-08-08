@@ -86,8 +86,9 @@
         margin-top: 80px !important;
         margin-bottom: 80px;
     }
+
     /* categotybar */
-    
+
 
     img {
         width: 100%;
@@ -125,10 +126,11 @@
     .img-item:hover {
         opacity: 0.8;
     }
-    .product-actions{
-      display: flex;
-      align-items: end;
-      justify-content: end;
+
+    .product-actions {
+        display: flex;
+        align-items: end;
+        justify-content: end;
     }
     </style>
 </head>
@@ -170,8 +172,7 @@
                             <div class="product-imgs">
                                 <div class="img-display">
                                     <div class="img-showcase">
-                                        <img src="img/<?php echo $row['HinhAnh'] ?>"
-                                            alt="shoe image">
+                                        <img src="img/<?php echo $row['HinhAnh'] ?>" alt="shoe image">
                                         <img src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg"
                                             alt="shoe image">
                                         <img src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg"
@@ -207,88 +208,69 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="product-colors">
-                            <h4>Colors:</h4>
-                            <div class="color-options">
-                                <label for="color1">
-                                    <input type="radio" name="color" id="color1" value="Red" checked>
-                                    <span class="color red"></span>
-                                </label>
-                                <label for="color2">
-                                    <input type="radio" name="color" id="color2" value="Blue">
-                                    <span class="color blue"></span>
-                                </label>
-                                <label for="color3">
-                                    <input type="radio" name="color" id="color3" value="Green">
-                                    <span class="color green"></span>
-                                </label>
-                            </div>
-                        </div> -->
                         </div>
-
-                        
                     </div>
                     <div class="col-md-5">
-                            <div class="product-info">
-                                <h2 class="product-title"><?php echo $row['TenSanPham'] ?></h2>
-                                <p class="product-price text-success">
-                                    <?php
+                        <div class="product-info">
+                            <h2 class="product-title"><?php echo $row['TenSanPham'] ?></h2>
+                            <p class="product-price text-success">
+                                <?php
     $giaBan = $row["GiaSanPham"];
     $giaGoc = $giaBan * 1.5;
     echo '<del>'.number_format($giaGoc).' <sup>VND</sup></del> &nbsp;';
     echo number_format($giaBan).' <sup>VND</sup>';
   ?>
-                                </p>
-                                <table class="table table-striped">
-                                    <tbody>
-                                        <tr>
-                                            <td>Kích thước</td>
-                                            <td><?php echo $row['KichThuoc'] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Trọng lượng</td>
-                                            <td><?php echo $row['TrongLuong'] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Camera</td>
-                                            <td><?php echo $row['Camera'] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ram</td>
-                                            <td><?php echo $row['Ram'] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sim</td>
-                                            <td><?php echo $row['Sim'] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Pin</td>
-                                            <td><?php echo $row['Pin'] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bộ nhớ</td>
-                                            <td><?php echo $row['BoNho'] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Hệ điều hành</td>
-                                            <td><?php echo $row['HeDieuHanh'] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bảo hành</td>
-                                            <td><?php echo $row['BaoHanh'] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Phụ kiện</td>
-                                            <td><?php echo $row['PhuKien'] ?></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="product-actions">
-                                    <a href="Addgiohang.php?masp=<?php echo $row["MaSanPham"] ?>"
-                                        class="btn btn-success">Mua hàng</a>
-                                </div>
+                            </p>
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Kích thước</td>
+                                        <td><?php echo $row['KichThuoc'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Trọng lượng</td>
+                                        <td><?php echo $row['TrongLuong'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Camera</td>
+                                        <td><?php echo $row['Camera'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ram</td>
+                                        <td><?php echo $row['Ram'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sim</td>
+                                        <td><?php echo $row['Sim'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pin</td>
+                                        <td><?php echo $row['Pin'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bộ nhớ</td>
+                                        <td><?php echo $row['BoNho'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hệ điều hành</td>
+                                        <td><?php echo $row['HeDieuHanh'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bảo hành</td>
+                                        <td><?php echo $row['BaoHanh'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phụ kiện</td>
+                                        <td><?php echo $row['PhuKien'] ?></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="product-actions">
+                                <a href="Addgiohang.php?masp=<?php echo $row["MaSanPham"] ?>"
+                                    class="btn btn-success">Thêm vào giỏ hàng</a>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
     </form>
