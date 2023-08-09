@@ -130,7 +130,7 @@
                                      ?>
                                      
                                     <td><a href="./OrderDetail.php?id=<?php echo $row2['MaDonHang']?>">Xem chi tiết</a></td>
-                                    <?php if($row2['trangthai_id'] == 1){ ?>
+                                    <?php if($row2['trangthai_id'] != 4){ ?>
                                     <td ></td>
                                     <?php } else{
                                      ?>

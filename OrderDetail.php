@@ -47,7 +47,7 @@
 
     th {
         font-weight: bold;
-        background-color: #452c63;
+        background-color: #0a5249;
     }
 
     img {
@@ -98,11 +98,14 @@
                         INNER JOIN thongtindonhang ON donhang.MaDonHang = thongtindonhang.MaDonHang
                         INNER JOIN sanpham ON thongtindonhang.MaSanPham = sanpham.MaSanPham
                         WHERE donhang.MaDonHang='$madh'";
+                $sql2 ="SELECT TrangThai, ThoiGian FROM lichsudonhang WHERE MaDonHang='$madh' ORDER BY ThoiGian DESC";
+                $result2 = mysqli_query($link, $sql2);
                 $result = mysqli_query($link, $sql);
                 if (!$result) {
                     die("Lỗi truy vấn: " . mysqli_error($link));
                 }
                 $row = mysqli_fetch_assoc($result);
+            include('./HistoryInvoice.php');
             }
         ?>
                         <tr>
@@ -152,11 +155,25 @@ mysqli_data_seek($result, 0);
 $row = mysqli_fetch_assoc($result);
 
 if ($row['TrangThai'] == 4) {
+    if (isset($_POST['submit'])) {
+        $newStatus = 9;
+        $updateQuery = "UPDATE donhang SET TrangThai = $newStatus WHERE MaDonHang = '$madh'";
+        $updateResult = mysqli_query($link, $updateQuery);
+        if (!$updateResult) {
+            die("Lỗi cập nhật trạng thái: " . mysqli_error($link));
+        }
+        $row['TrangThai'] = $newStatus; // Cập nhật trạng thái mới
+        themLichSuDonHang($madh, "Yêu cầu trả hàng", $thoiGian);
+        echo "<script type='text/javascript'>alert('Đã gửi yêu cầu thành công!'); window.location.href = '../apple-store/index.php';</script>";
+    }
     // Đơn hàng đã được giao tới và đã được xác nhận nhận hàng
     ?>
             <button class="btn btn-success d-print-none font-weight-bold"
                 onclick="window.open('PrintInvoice.php?id=<?php echo $row['MaDonHang']?>')">In hóa đơn</button>
-                
+            <p style="color:green">Đơn hàng đã được giao thành công!</p>
+            <form action="" method="post">
+                <button class="btn btn-danger" type="submit" name="submit">Yêu cầu trả hàng</button>
+            </form>
             <?php
 } else if ($row['TrangThai'] == 1) {
     if (isset($_POST['submit'])) {
@@ -167,12 +184,14 @@ if ($row['TrangThai'] == 4) {
             die("Lỗi cập nhật trạng thái: " . mysqli_error($link));
         }
         $row['TrangThai'] = $newStatus; // Cập nhật trạng thái mới
+        themLichSuDonHang($madh, "Yêu cầu hủy đơn", $thoiGian);
+        echo "<script type='text/javascript'>alert('Đã gửi yêu cầu thành công!'); window.location.href = '../apple-store/index.php';</script>";
     }
     ?>
             <p style="color:red">Đặt hàng thành công!</p>
             <form action="" method="post">
-        <button class="btn btn-danger" type="submit" name="submit">Yêu cầu hủy đơn</button>
-    </form>
+                <button class="btn btn-danger" type="submit" name="submit">Yêu cầu hủy đơn</button>
+            </form>
             <?php
 } else if ($row['TrangThai'] == 2) {
     if (isset($_POST['submit'])) {
@@ -183,12 +202,14 @@ if ($row['TrangThai'] == 4) {
             die("Lỗi cập nhật trạng thái: " . mysqli_error($link));
         }
         $row['TrangThai'] = $newStatus; // Cập nhật trạng thái mới
+        themLichSuDonHang($madh, "Yêu cầu hủy đơn", $thoiGian);
+        echo "<script type='text/javascript'>alert('Đã gửi yêu cầu thành công!'); window.location.href = '../apple-store/index.php';</script>";
     }
     ?>
             <p style="color:red">Đang chuẩn bị hàng!</p>
             <form action="" method="post">
-        <button class="btn btn-danger" type="submit" name="submit">Yêu cầu hủy đơn</button>
-    </form>
+                <button class="btn btn-danger" type="submit" name="submit">Yêu cầu hủy đơn</button>
+            </form>
             <?php
 } 
 else if ($row['TrangThai'] == 3) {
@@ -200,33 +221,114 @@ else if ($row['TrangThai'] == 3) {
             die("Lỗi cập nhật trạng thái: " . mysqli_error($link));
         }
         $row['TrangThai'] = $newStatus; // Cập nhật trạng thái mới
+        themLichSuDonHang($madh, "Giao hàng thành công", $thoiGian);
+        echo "<script type='text/javascript'>alert('Đã gửi yêu cầu thành công!'); window.location.href = '../apple-store/index.php';</script>";
     }
     ?>
-    <p style="color:red">Đơn hàng đang được giao tới!</p>
-    <form action="" method="post">
-        <button class="btn btn-danger" type="submit" name="submit">Đã nhận hàng</button>
-    </form>
+            <p style="color:red">Đơn hàng đang được giao tới!</p>
+            <form action="" method="post">
+                <button class="btn btn-danger" type="submit" name="submit">Đã nhận hàng</button>
+            </form>
             <?php
 } 
 else if ($row['TrangThai'] == 7) {
     if (isset($_POST['submit'])) {
-        $newStatus = 3;
+        $newStatus = 2;
         $updateQuery = "UPDATE donhang SET TrangThai = $newStatus WHERE MaDonHang = '$madh'";
         $updateResult = mysqli_query($link, $updateQuery);
         if (!$updateResult) {
             die("Lỗi cập nhật trạng thái: " . mysqli_error($link));
         }
         $row['TrangThai'] = $newStatus; // Cập nhật trạng thái mới
+        echo "<script type='text/javascript'>alert('Đã gửi yêu cầu thành công!'); window.location.href = '../apple-store/index.php';</script>";
     }
     ?>
-    <p style="color:red">Đơn hàng đã giao cho vận chuyển không thể hủy!</p>
-    <form action="" method="post">
-        <button class="btn btn-danger" type="submit" name="submit">Tiếp tục giao hàng</button>
-    </form>
-    <?php
-}
-?>
+            <p style="color:red">Đơn hàng đã giao cho vận chuyển không thể hủy!</p>
+            <form action="" method="post">
+                <button class="btn btn-danger" type="submit" name="submit">Tiếp tục giao hàng</button>
+            </form>
+            <?php
+} 
+else if ($row['TrangThai'] == 8) {
+    if (isset($_POST['submit'])) {
+        $newStatus = 1;
+        $updateQuery = "UPDATE donhang SET TrangThai = $newStatus WHERE MaDonHang = '$madh'";
+        $updateResult = mysqli_query($link, $updateQuery);
+        if (!$updateResult) {
+            die("Lỗi cập nhật trạng thái: " . mysqli_error($link));
+        }
+        $row['TrangThai'] = $newStatus; // Cập nhật trạng thái mới
+        themLichSuDonHang($madh, "Tiếp tục giao hàng", $thoiGian);
+        echo "<script type='text/javascript'>alert('Đã gửi yêu cầu thành công!'); window.location.href = '../apple-store/index.php';</script>";
+    }
+    ?>
+            <p style="color:red">Đơn hàng đã yêu cầu hủy!</p>
+            <form action="" method="post">
+                <button class="btn btn-danger" type="submit" name="submit">Tiếp tục giao hàng</button>
+            </form>           
+            <?php
+}else if ($row['TrangThai'] == 10) {
+    if (isset($_POST['submit'])) {
+        $newStatus = 4;
+        $updateQuery = "UPDATE donhang SET TrangThai = $newStatus WHERE MaDonHang = '$madh'";
+        $updateResult = mysqli_query($link, $updateQuery);
+        if (!$updateResult) {
+            die("Lỗi cập nhật trạng thái: " . mysqli_error($link));
+        }
+        $row['TrangThai'] = $newStatus; // Cập nhật trạng thái mới
+        themLichSuDonHang($madh, "Chấp nhận không trả hàng", $thoiGian);
+        echo "<script type='text/javascript'>alert('Đã gửi yêu cầu thành công!'); window.location.href = '../apple-store/index.php';</script>";
+    }
+    ?>
+            <p style="color:red">Đơn hàng đã bị từ chối hoàn trả!</p>
+            <form action="" method="post">
+                <button class="btn btn-danger" type="submit" name="submit">Hủy trả hàng</button>
+            </form>
+            <?php
+}else if ($row['TrangThai'] == 9) {
+    if (isset($_POST['submit'])) {
+        $newStatus = 4;
+        $updateQuery = "UPDATE donhang SET TrangThai = $newStatus WHERE MaDonHang = '$madh'";
+        $updateResult = mysqli_query($link, $updateQuery);
+        if (!$updateResult) {
+            die("Lỗi cập nhật trạng thái: " . mysqli_error($link));
+        }
+        $row['TrangThai'] = $newStatus; // Cập nhật trạng thái mới
+        themLichSuDonHang($madh, "Chấp nhận không trả hàng", $thoiGian);
+        echo "<script type='text/javascript'>alert('Đã gửi yêu cầu thành công!'); window.location.href = '../apple-store/index.php';</script>";
+    }
+    ?>
+            <p style="color:red">Đơn hàng đã yêu cầu hoàn trả!</p>
+            <form action="" method="post">
+                <button class="btn btn-danger" type="submit" name="submit">Hủy trả hàng</button>
+            </form>
         </div>
+
+        <?php
+}
+if (!$result2) {
+    die("Lỗi truy vấn: " . mysqli_error($link));
+} ?>
+        <table class="mt-2 table table-striped table-bordered table-success rounded">
+            <tr class="bg-primary text-white">
+                <th colspan="2" class="text-center">
+                    <h3 class="text-light">Lịch sử đơn hàng</h3>
+                </th>
+            </tr>
+            <tr>
+                <th class="text-light">Trạng thái</th>
+                <th class="text-light">Thời gian</th>
+            </tr>
+            <?php
+mysqli_data_seek($result2, 0); 
+while($row = mysqli_fetch_assoc($result2)){
+?>
+            <tr>
+                <td><?php echo $row['TrangThai'] ?></td>
+                <td><?php echo $row['ThoiGian'] ?></td>
+            </tr>
+            <?php } ?>
+        </table>
     </section>
     <?php include("footer.php"); ?>
     <!-- Bootstrap core JavaScript -->

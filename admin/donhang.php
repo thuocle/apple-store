@@ -4,6 +4,7 @@
 <?php
     include('../admin/assets/title.php');
     include('../config/db.php');
+    include('../HistoryInvoice.php');
     if (isset($_GET['id']) && isset($_POST['status'])) {
         $orderId = $_GET['id'];
         $status = $_POST['status'];
@@ -17,36 +18,43 @@
         // Kiểm tra và cập nhật trạng thái đơn hàng
         $validStatusChange = false;
         $newStatus = 0;
+        $htrStatus="";
 
         switch ($currentStatus) {
             case '1':
                 if ($status == 2) {
                     $validStatusChange = true;
                     $newStatus = 2;
+                    $htrStatus="Chờ lấy hàng";
                 }
                 break;
             case '2':
                 if ($status == 3) {
                     $validStatusChange = true;
                     $newStatus = 3;
+                    $htrStatus="Đang giao hàng";
                 }
                 break;
             case '3':
                 if ($status == 4) {
                     $validStatusChange = true;
                     $newStatus = 4;
-                }
-                break;
-            case '4':
-                if ($status == 6) {
-                    $validStatusChange = true;
-                    $newStatus = 6;
+                    $htrStatus="Giao hàng thành công";
                 }
                 break;
             case '8':
                 if ($status == 7 || $status == 5)  {
                     $validStatusChange = true;
                     $newStatus = ($status == 7) ? 7 : 5;
+                    $htrStatus= ($status == 7) ? "Yêu cầu hủy đơn bị từ chối" : "Yêu cầu hủy đơn đã được chấp nhận";
+
+                }
+                break;
+            case '9':
+                if ($status == 10 || $status == 6)  {
+                    $validStatusChange = true;
+                    $newStatus = ($status == 10) ? 10 : 6;
+                    $htrStatus= ($status == 10) ? "Yêu cầu trả hàng bị từ chối" : "Yêu cầu trả hàng đã được chấp nhận";
                 }
                 break;
             default:
@@ -58,6 +66,7 @@
         if ($validStatusChange) {
             $updateStatusQuery = "UPDATE donhang SET TrangThai = $newStatus WHERE MaDonHang = '$orderId'";
             if (mysqli_query($link, $updateStatusQuery)) {
+                themLichSuDonHang($orderId, $htrStatus, $thoiGian);
                 echo "<script type='text/javascript'>alert('Sửa trạng thái thành công'); window.location.href = '../admin/donhang.php';</script>";
                 exit();
             } else {
@@ -153,6 +162,7 @@
                                                     <option value="5">Đã hủy</option>
                                                     <option value="6">Trả hàng</option>
                                                     <option value="7">Từ chối hủy đơn</option>
+                                                    <option value="10">Từ chối trả hàng</option>
                                                 </select>
                                                 <input type="submit" value="Cập nhật" class="btn btn-success">
                                             </form>
