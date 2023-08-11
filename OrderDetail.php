@@ -170,7 +170,7 @@ if ($row['TrangThai'] == 4) {
     ?>
             <button class="btn btn-success d-print-none font-weight-bold"
                 onclick="window.open('PrintInvoice.php?id=<?php echo $row['MaDonHang']?>')">In hóa đơn</button>
-            <p style="color:green">Đơn hàng đã được giao thành công!</p>
+            <p style="color:green">Đơn hàng đã được giao thành công!></p>
             <form action="" method="post">
                 <button class="btn btn-danger" type="submit" name="submit">Yêu cầu trả hàng</button>
             </form>
