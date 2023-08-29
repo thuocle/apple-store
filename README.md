@@ -1,2 +1,2 @@
 # apple-store
-welcome to Apple store REP 11
+welcome to Apple Store REP 11
