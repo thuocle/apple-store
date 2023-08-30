@@ -25,6 +25,7 @@
         border-collapse: collapse;
         width: 100%;
         margin-bottom: 20px;
+        height: 150px;
     }
 
     th,
@@ -85,24 +86,29 @@
     .services {
         margin-top: 80px !important;
         margin-bottom: 80px;
+        padding-left: 200px;
+        padding-right: 200px;
     }
 
     /* categotybar */
 
-
     img {
         width: 100%;
         display: block;
+        /* height: 100%; */
+        object-fit: cover;
     }
 
     .img-display {
         overflow: hidden;
+        margin: 20px;
     }
 
     .img-showcase {
         display: flex;
         width: 100%;
         transition: all 0.5s ease;
+        /* height: 350px; */
     }
 
     .img-showcase img {
@@ -129,8 +135,8 @@
 
     .product-actions {
         display: flex;
-        align-items: end;
-        justify-content: end;
+        align-items: center;
+        justify-content: center;
     }
     </style>
 </head>
@@ -164,9 +170,9 @@
         </div>
         <?php include('./CategoryBar.php') ?>
         <div class="services">
-            <div class="container">
-                <div class="row" style="gap: 100px;">
-                    <div class="col-md-5">
+            <div class="container" >
+                <div class="row" style="gap: 200px;">
+                    <div class="col-md-4">
                         <div class="product-image">
                             <!-- <img src="img/<?php echo $row['HinhAnh'] ?>" alt="" class="img-fluid wc-image"> -->
                             <div class="product-imgs">
@@ -221,7 +227,7 @@
     echo number_format($giaBan).' <sup>VND</sup>';
   ?>
                             </p>
-                            <table class="table table-striped">
+                            <table class="table table-striped" style="max-height: 150px;">
                                 <tbody>
                                     <tr>
                                         <td>Kích thước</td>
