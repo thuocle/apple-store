@@ -243,7 +243,7 @@
                                     </tr>
                                     <tr>
                                         <td>Ram</td>
-                                        <td><?php echo $row['Ram'] ?></td>
+                                        <td><?php echo $row['Ram'] ?> GB</td>
                                     </tr>
                                     <tr>
                                         <td>Sim</td>
@@ -255,7 +255,7 @@
                                     </tr>
                                     <tr>
                                         <td>Bộ nhớ</td>
-                                        <td><?php echo $row['BoNho'] ?></td>
+                                        <td><?php echo $row['BoNho'] ?> GB</td>
                                     </tr>
                                     <tr>
                                         <td>Hệ điều hành</td>

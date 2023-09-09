@@ -137,7 +137,11 @@
 
 <body>
     <!-- style="position: absolute; margin-top: 70px;margin-left: 600px" -->
-    <?php include("header.php");?>
+    <?php
+
+use Google\Service\ChromeUXReport\Bin;
+
+ include("header.php");?>
 
     <!-- Page Content -->
     <div class="page-heading header-text">
@@ -156,6 +160,7 @@
     </form>
     <div class="services">
         <div class="container"></div>
+    <?php include('./filter-product.php') ?>
         <div class="row" style="margin: 0;">
             <?php 
       function alert($msg) {
@@ -180,23 +185,7 @@ $sql = "SELECT * FROM sanpham ORDER BY MaSanPham ASC LIMIT $start, $per_page";
 $result = $link->query($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
-    echo '<div class="col-md-4">';
-    echo '<div class="service-item">';
-    echo '<img src="img/'.$row["HinhAnh"].'" alt=""  >';
-    echo '<div class="down-content">';
-    echo '<h4>'. $row["TenSanPham"] .'</h4>';
-    echo '<div style="margin-bottom:10px;">';
-    echo '<span>';
-    echo '<del>'.$row["GiaSanPham"]*1.5.'<sup>VND</sup></del> &nbsp;'.$row["GiaSanPham"].'<sup>VND</sup>';
-    echo ' </span>';
-    echo '</div>';
-    echo '<p>'. $row["Ram"] .' </p>';
-    echo '<p>'. $row["BoNho"] .' </p>';
-    echo '<a href="product-details.php?masp='. $row["MaSanPham"] .' " class="filled-button">Xem thêm</a>';
-    echo '</div>';
-    echo '</div>';
-    echo '<br>';
-    echo '</div>';
+    
   }
 } else {
     echo '<script>
@@ -204,41 +193,8 @@ if ($result->num_rows > 0) {
 </script>';
 }
 ?>
-        </div>
-        <nav>
-            <ul class="pagination pagination-lg justify-content-center">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">«</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-                <?php
-      $sqltrang = mysqli_query($link,"SELECT * FROM sanpham");
-      $rowcount = mysqli_num_rows($sqltrang);
-      $page = ceil($rowcount/3);
-      for($i=1;$i<=$page;$i++) {
-    ?>
-                <li class="page-item"><a class="page-link"
-                        href="products.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
-                <?php }
-    ?>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">»</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-        <br>
-        <br>
-        <br>
-        <br>
+        
     </div>
-    </div>
-
     <!-- Footer Starts Here -->
     <?php include("footer.php");?>
 </body>
