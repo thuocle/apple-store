@@ -12,60 +12,54 @@ $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 $start = ($page - 1) * $per_page;
 
 // Xây dựng truy vấn SQL để lấy sản phẩm cho trang hiện tại
-$query = "SELECT * FROM SanPham WHERE 1=1";
+$query = "SELECT * FROM sanpham INNER JOIN optionproduct ON sanpham.MaSanPham = optionproduct.MaSanPham WHERE 1=1";
 
 if (isset($_POST["minimum_price"], $_POST["maximum_price"]) && !empty($_POST["minimum_price"]) && !empty($_POST["maximum_price"])) {
-    $query .= " AND GiaSanPham BETWEEN '" . $_POST["minimum_price"] . "' AND '" . $_POST["maximum_price"] . "'";
+    $query .= " AND Gia BETWEEN '" . $_POST["minimum_price"] . "' AND '" . $_POST["maximum_price"] . "'";
 }
 
 if (isset($_POST["inches"])) {
     $inches = implode("','", $_POST["inches"]);
     $query .= " AND KichThuoc IN('" . $inches . "')";
 }
-
-if (isset($_POST["ram"])) {
-    $ram_filter = implode("','", $_POST["ram"]);
-    $query .= " AND Ram IN('" . $ram_filter . "')";
+if (isset($_POST["color"])) {
+    $color = implode("','", $_POST["color"]);
+    $query .= " AND MauSac IN('" . $color . "')";
 }
-
 if (isset($_POST["storage"])) {
     $storage_filter = implode("','", $_POST["storage"]);
     $query .= " AND BoNho IN('" . $storage_filter . "')";
 }
 
-$query .= " ORDER BY MaSanPham ASC LIMIT $start, $per_page";
+$query .= " GROUP BY sanpham.MaSanPham  ORDER BY sanpham.MaSanPham ASC LIMIT $start, $per_page";
 
 $statement = $connect->prepare($query);
 $statement->execute();
 $result = $statement->fetchAll();
 $total_row = $statement->rowCount();
-$output = '';
 
 if ($total_row > 0) {
     foreach ($result as $row) {
-        $output .= '
+        ?>
         <div class="col-md-4">
-            <div class="service-item">
-                <img src="img/' . $row["HinhAnh"] . '" alt="">
-                <div class="down-content">
-                    <h4>' . $row["TenSanPham"] . '</h4>
-                    <div style="margin-bottom:10px;">
-                        <span>
-                            <del>' . ($row["GiaSanPham"] * 1.5) . '<sup>VND</sup></del> &nbsp;' . $row["GiaSanPham"] . '<sup>VND</sup>
-                        </span>
+            <div class="product-card">
+                <img style="height: 200px;" src="img/<?= $row["HinhAnh"] ?>" alt="<?= $row["TenSanPham"] ?>" class="product-image-small">
+                <div style="padding:15px;" class="product-details">
+                    <h4><?= $row["TenSanPham"] ?></h4>
+                    <div class="price">
+                        <del><?= number_format($row["Gia"] * 1.5) ?><sup>VND</sup></del>
+                       <span style="color:red;font-weight:bold"> <?= number_format($row["Gia"]) ?></span><sup style="color:red;">VND</sup>
                     </div>
-                    <p><b>Ram ' . $row["Ram"] . ' GB</b></p>
-                    <p><b>Bộ nhớ ' . $row["BoNho"] . ' GB</b></p>
-                    <a href="product-details.php?masp=' . $row["MaSanPham"] . ' " class="filled-button">Xem thêm</a>
+                    <p><b>Phiên bản <?= $row["BoNho"] ?></b></p>
+                    <a href="product-details.php?masp=<?= $row["MaSanPham"] ?>" class="view-details-button">Xem thêm</a>
                 </div>
             </div>
-            <br>
-        </div>';
+        </div>
+        <?php
     }
 } else {
-    $output = '<h3>No Data Found</h3>';
+    echo '<h3>No Data Found</h3>';
 }
-echo $output;
 
 // Phân trang
 echo '<nav>
@@ -100,5 +94,4 @@ if ($page < $total_pages) {
 
 echo '</ul>
 </nav>';
-
 ?>

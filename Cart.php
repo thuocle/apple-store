@@ -58,7 +58,8 @@ if(isset($_SESSION['cart']))
                             <tr>
                                 <th style="width: 200; text-align: center;">Hình ảnh</th>
                                 <th style="width: 200; text-align: center;">Tên sản phẩm</th>
-                                <th style="width: 200; text-align: center;">Số lượng</th>
+                                <th style="width: 200; text-align: center;">Phiên bản</th>
+                                <th style="width: 200; text-align: center;">Màu sắc</th>                              <th style="width: 200; text-align: center;">Số lượng</th>
                                 <th style="width: 200; text-align: center;">Đơn giá</th>
                                 <th style="width: 200; text-align: center;">Thành tiền</th>
                             </tr>
@@ -73,30 +74,31 @@ if(isset($_SESSION['cart']))
                                     <img src="img/<?php echo $item['img'] ?>" >
                                 </td>
                                 <td style="width: 200;text-align: center;"><?php echo $item['tensp'] ?></td>
-                                <!-- <td style="width: 200; text-align: center;">//<?php //echo $item['sl'] ?></td> -->
+                                <td style="width: 200;text-align: center;"><?php echo $item['version']; ?></td>
+                                <td style="width: 200; text-align: center; padding-left: 40px;">
+    <p style="<?php if($item['color'] == 'white') echo 'color: black;'; else echo 'color: white;'; ?>; width: 60px; height: 30px; border-radius: 5px; background-color: <?php echo $item['color']; ?>;"><?php echo strtoupper($item['color']); ?></p>
+</td>
+
                                 <td style="width: 200; text-align: center;">
                                     <a class="btn btn-sm btn-danger decrease-quantity" type="submit"
-                                        href="./ProcessCart.php?tru=<?php echo $item['masp']?>"
-                                        data-masp="<?php echo $item['masp'] ?>">-</a>
+                                        href="./ProcessCart.php?tru=<?php echo $item['opid']?>"
+                                        data-opid="<?php echo $item['opid'] ?>">-</a>
                                     <span class="quantity"
-                                        data-masp="<?php echo $item['masp'] ?>"><?php echo $item['sl'] ?></span>
+                                        data-opid="<?php echo $item['opid'] ?>"><?php echo $item['sl'] ?></span>
                                     <a class="btn btn-sm btn-success increase-quantity" type="submit"
-                                        href="./ProcessCart.php?cong=<?php echo $item['masp']?>"
-                                        data-masp="<?php echo $item['masp'] ?>">+</a>
-                                    <a href="ProcessCart.php?idxoa=<?php echo $item['masp']?>"
+                                        href="./ProcessCart.php?cong=<?php echo $item['opid']?>"
+                                        data-opid="<?php echo $item['opid'] ?>">+</a>
+                                    <a href="ProcessCart.php?idxoa=<?php echo $item['opid']?>"
                                         class="btn btn-sm btn-outline-danger remove-product" type="button">Xóa</a>
                                 </td>
                                 <td style="width: 200; text-align: center;">
                                     <span class="price"
-                                        data-masp="<?php echo $item['masp'] ?>"><b><?php echo number_format($item['gia'], 0, ',', '.') ?></b></span>
+                                        data-opid="<?php echo $item['opid'] ?>"><b><?php echo number_format($item['gia'], 0, ',', '.') ?></b></span>
                                 </td>
                                 <td style="width: 200; text-align: center;">
                                     <span class="total-price"
-                                        data-masp="<?php echo $item['masp'] ?>"><b><?php echo number_format($tien, 0, ',', '.') ?></b></span>
+                                        data-opid="<?php echo $item['opid'] ?>"><b><?php echo number_format($tien, 0, ',', '.') ?></b></span>
                                 </td>
-                                <!-- <td style="width: 200; text-align: center;"><?php //echo $item['gia'] ?></td>
-                <td style="width: 200; text-align: center;"> -->
-                            </tr>
                             <?php
         }
         ?>

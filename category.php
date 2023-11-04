@@ -51,37 +51,34 @@
         <div class="container">
             <div class="row">
                 <?php
-                $sql = "SELECT * FROM sanpham WHERE MaLoaiSP = '$idloaisp'";
+                $sql = "SELECT * FROM sanpham JOIN optionproduct ON sanpham.MaSanPham =  optionproduct.MaSanPham WHERE MaLoaiSP = '$idloaisp'";
                 $page=0;
                 if(isset($_GET['page']))
                 {
                 $page = $_GET['page'];
                 $page = ($page-1)*3;
                 }
-                $sql .= " ORDER BY 'MaSanPham' ASC LIMIT $page,3";
+                $sql .= " GROUP BY 'MaSanPham' ORDER BY 'MaSanPham' ASC LIMIT $page,3";
                 $result = $link->query($sql);
 
                 if ($result->num_rows > 0) {
                     // output data of each row
-                    while ($row = $result->fetch_assoc()) {
-                        echo '<div class="col-md-4">';
-                        echo '<div class="service-item">';
-                        echo '<img src="img/'.$row["HinhAnh"].'" alt=""  >';
-                        echo '<div class="down-content">';
-                        echo '<h4>' . $row["TenSanPham"] . '</h4>';
-                        echo '<div style="margin-bottom:10px;">';
-                        echo '<span>';
-                        echo '<del>' . $row["GiaSanPham"] * 1.5 . '<sup>VND</sup></del> &nbsp;' . $row["GiaSanPham"] . '<sup>VND</sup>';
-                        echo ' </span>';
-                        echo '</div>';
-                        echo '<p>' . $row["Ram"] . ' </p>';
-                        echo '<p>' . $row["BoNho"] . ' </p>';
-                        echo '<a href="product-details.php?masp=' . $row["MaSanPham"] . ' " class="filled-button">Xem thêm</a>';
-                        echo '</div>';
-                        echo '</div>';
-
-                        echo '<br>';
-                        echo '</div>';
+                    while ($row = $result->fetch_assoc()) { ?>
+                        <div class="col-md-4">
+                        <div class="product-card">
+                            <img style="height: 200px;" src="img/<?= $row["HinhAnh"] ?>" alt="<?= $row["TenSanPham"] ?>" class="product-image-small">
+                            <div style="padding:15px;" class="product-details">
+                                <h4><?= $row["TenSanPham"] ?></h4>
+                                <div class="price">
+                                    <del><?= number_format($row["Gia"] * 1.5) ?><sup>VND</sup></del>
+                                   <span style="color:red;font-weight:bold"> <?= number_format($row["Gia"]) ?></span><sup style="color:red;">VND</sup>
+                                </div>
+                                <p><b>Phiên bản <?= $row["BoNho"] ?></b></p>
+                                <a href="product-details.php?masp=<?= $row["MaSanPham"] ?>" class="view-details-button">Xem thêm</a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
                     }
                 } else {
                     echo "0 results";

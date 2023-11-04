@@ -4,7 +4,6 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 $thoiGian = date("Y-m-d H:i:s", time());
 function themLichSuDonHang($maDonHang, $trangThai, $thoiGian) {
     include('../config/db.php');
-    include('./config/db.php');
     global $thoiGian;
     // Chuẩn bị câu lệnh SQL để thêm lịch sử đơn hàng
     $sql = "INSERT INTO lichsudonhang (MaDonHang, TrangThai, ThoiGian) VALUES ('$maDonHang', '$trangThai', '$thoiGian')";

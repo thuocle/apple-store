@@ -37,12 +37,10 @@
                     ?>
                     </div>
                 </div>
-
-				<div class="list-group">
-					<h3>RAM</h3>
-                    <?php
-
-                    $query = " SELECT DISTINCT(Ram) FROM SanPham ORDER BY Ram DESC
+                <div class="list-group">
+					<h3>Màu sắc</h3>
+					<?php
+                    $query = "SELECT DISTINCT(MauSac) FROM optionproduct ORDER BY MauSac DESC
                     ";
                     $statement = $connect->prepare($query);
                     $statement->execute();
@@ -50,19 +48,29 @@
                     foreach($result as $row)
                     {
                     ?>
-                    <div class="list-group-item checkbox">
-                        <label><input type="checkbox" class="common_selector ram" value="<?php echo $row['Ram']; ?>" > <?php echo $row['Ram']; ?> GB</label>
-                    </div>
-                    <?php    
-                    }
+                   <div class="list-group-item checkbox">
+    <label>
+        <input type="checkbox" class="common_selector color" value="<?php echo $row['MauSac']; ?>">
+        <p style="color: <?php echo $row['MauSac'] == 'white' ? 'black' : 'white'; ?>;
+                 width: 50px;
+                 padding: 5px;
+                 font-size: 10px;
+                 line-height: 10px;
+                 height: 20px;
+                 background-color: <?php echo $row['MauSac'] == 'white' ? 'beige' : $row['MauSac']; ?>;">
+            <?php echo strtoupper($row['MauSac']); ?>
+        </p>
+    </label>
+</div>
 
-                    ?>
+                    <?php
+                    }
+                    ?>	
                 </div>
-				
 				<div class="list-group">
-					<h3>Bộ nhớ trong</h3>
+					<h3>Phiên bản</h3>
 					<?php
-                    $query = "SELECT DISTINCT(BoNho) FROM SanPham ORDER BY BoNho DESC
+                    $query = "SELECT DISTINCT(BoNho) FROM optionproduct ORDER BY BoNho DESC
                     ";
                     $statement = $connect->prepare($query);
                     $statement->execute();
@@ -107,12 +115,12 @@ $(document).ready(function(){
         var minimum_price = $('#hidden_minimum_price').val();
         var maximum_price = $('#hidden_maximum_price').val();
         var inches = get_filter('inches');
-        var ram = get_filter('ram');
+        var color = get_filter('color');
         var storage = get_filter('storage');
         $.ajax({
             url:"fetch_data.php",
             method:"POST",
-            data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, inches:inches, ram:ram, storage:storage},
+            data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, inches:inches, color:color, storage:storage},
             success:function(data){
                 $('.filter_data').html(data);
             }

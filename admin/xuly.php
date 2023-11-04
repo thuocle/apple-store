@@ -7,8 +7,6 @@
     $hinhanh = time().'_'.$hinhanh;
     $i = "SP".rand(1,100);
     $tensp = $_POST['tensp'];
-    $giaban = $_POST['gia'];
-    $sl = $_POST['sl'];
     $kichthuoc = $_POST['kichthuoc'];
     $trgluong = $_POST['trgluong'];
     $camera = $_POST['camera'];
@@ -19,18 +17,13 @@
     $bh = $_POST['bh'];
     $pk = $_POST['pk'];
     $loaisp = $_POST['loaisp'];
-    $bonho = $_POST['bonho'];
-    $chip = $_POST['chip'];
-    $cpu = $_POST['cpu'];
-    $gpu = $_POST['gpu'];
-    $tid = $_POST['tid'];
     $sql = "SELECT * FROM loaisp WHERE TenLoaiSP = '$loaisp'";
                                     if ($result = mysqli_query($link, $sql)) {
                                         while ($row = mysqli_fetch_array($result)) {
                                             $id = $row['MaLoaiSP'];
                                         }
                                     }
-                $sql1 = "INSERT INTO sanpham VAlUES ('$i','$tensp',$giaban,$sl,'$kichthuoc','$trgluong','$camera','$ram','$sim','$pin','$bonho','$hdh','$bh','$pk','$hinhanh','$id', '$chip', '$cpu', '$gpu', '$tid')";
+                $sql1 = "INSERT INTO sanpham VAlUES ('$i','$tensp','$kichthuoc','$trgluong','$camera','$ram','$sim','$pin','$hdh','$bh','$pk','$hinhanh','$id')";
                 if (mysqli_query($link, $sql1)) {
                     $padt = "D:/".$hinhanh;
                     $pa = "../img/".$hinhanh;
@@ -50,8 +43,6 @@
     $hinhanh = time().'_'.$hinhanh;
     $i = "SP".rand(1,100);
     $tensp = $_POST['tensp'];
-    $giaban = $_POST['gia'];
-    $sl = $_POST['sl'];
     $kichthuoc = $_POST['kichthuoc'];
     $trgluong = $_POST['trgluong'];
     $camera = $_POST['camera'];
@@ -62,19 +53,14 @@
     $bh = $_POST['bh'];
     $pk = $_POST['pk'];
     $loaisp = $_POST['loaisp'];
-    $bonho = $_POST['bonho'];
-    $chip = $_POST['chip'];
-    $cpu = $_POST['cpu'];
-    $gpu = $_POST['gpu'];
-    $tid = $_POST['tid'];
     $sql = "SELECT * FROM loaisp WHERE TenLoaiSP = '$loaisp'";
-                                    if ($result = mysqli_query($link, $sql)) {
-                                        while ($row = mysqli_fetch_array($result)) {
-                                            $id = $row['MaLoaiSP'];
-                                        }
-                                    }
-                                    $masp = $_POST['masp'];
-                $sq = "UPDATE sanpham SET TenSanPham = '$tensp', GiaSanPham = '$giaban', SoLuong = '$sl', KichThuoc = '$kichthuoc', TrongLuong = '$trgluong', Camera = '$camera', Ram = '$ram', Sim = '$sim', Pin = '$pin', BoNho = '$bonho', HeDieuHanh = '$hdh', BaoHanh = '$bh', PhuKien = '$pk', HinhAnh = '$hinhanh', MaLoaiSP = '$id', Chip = '$chip', CPU = '$cpu', GPU = '$gpu', TouchID = '$tid'  WHERE MaSanPham = '$masp'";                
+                if ($result = mysqli_query($link, $sql)) {
+                    while ($row = mysqli_fetch_array($result)) {
+                             $id = $row['MaLoaiSP'];
+                    }
+                 }
+                $masp = $_POST['masp'];
+                $sq = "UPDATE sanpham SET TenSanPham = '$tensp', KichThuoc = '$kichthuoc', TrongLuong = '$trgluong', Camera = '$camera',Sim = '$sim', Pin = '$pin', HeDieuHanh = '$hdh', BaoHanh = '$bh', PhuKien = '$pk', HinhAnh = '$hinhanh', MaLoaiSP = '$loaisp' WHERE MaSanPham = '$masp'";                
                 if (mysqli_query($link, $sq)) {
                     $padt = "D:/".$hinhanh;
                     $pa = "../img/".$hinhanh;

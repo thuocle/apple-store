@@ -193,7 +193,39 @@ if ($result->num_rows > 0) {
 </script>';
 }
 ?>
-        
+        </div>
+        <!-- <nav>
+            <ul class="pagination pagination-lg justify-content-center">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">«</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                <?php
+      $sqltrang = mysqli_query($link,"SELECT * FROM sanpham INNER JOIN optionproduct ON sanpham.MaSanPham = optionproduct.MaSanPham");
+      $rowcount = mysqli_num_rows($sqltrang);
+      $page = ceil($rowcount/3);
+      for($i=1;$i<=$page;$i++) {
+    ?>
+                <li class="page-item"><a class="page-link"
+                        href="products.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                <?php }
+    ?>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav> -->
+
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
     </div>
     <!-- Footer Starts Here -->
     <?php include("footer.php");?>

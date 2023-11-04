@@ -21,40 +21,32 @@
         $htrStatus="";
 
         switch ($currentStatus) {
-            case '1':
+            case 1:
                 if ($status == 2) {
                     $validStatusChange = true;
                     $newStatus = 2;
                     $htrStatus="Chờ lấy hàng";
                 }
                 break;
-            case '2':
+            case 2:
                 if ($status == 3) {
                     $validStatusChange = true;
                     $newStatus = 3;
                     $htrStatus="Đang giao hàng";
                 }
                 break;
-            case '3':
-                if ($status == 4) {
-                    $validStatusChange = true;
-                    $newStatus = 4;
-                    $htrStatus="Giao hàng thành công";
-                }
-                break;
-            case '8':
+            case 8:
                 if ($status == 7 || $status == 5)  {
                     $validStatusChange = true;
                     $newStatus = ($status == 7) ? 7 : 5;
-                    $htrStatus= ($status == 7) ? "Yêu cầu hủy đơn bị từ chối" : "Yêu cầu hủy đơn đã được chấp nhận";
-
+                    $htrStatus= ($status == 7) ? "Đã hủy" : "Từ chối hủy đơn";
                 }
                 break;
-            case '9':
-                if ($status == 10 || $status == 6)  {
+            case 9:
+                if ($status == 6 || $status == 10)  {
                     $validStatusChange = true;
-                    $newStatus = ($status == 10) ? 10 : 6;
-                    $htrStatus= ($status == 10) ? "Yêu cầu trả hàng bị từ chối" : "Yêu cầu trả hàng đã được chấp nhận";
+                    $newStatus = ($status == 6) ? 6 : 10;
+                    $htrStatus= ($status == 6) ? "Trả hàng" : "Từ chối trả hàng";
                 }
                 break;
             default:
@@ -91,7 +83,7 @@
                 <div class="card mb-4">
                     <div class="card-body"></div>
                 </div>
-                <div class="card mb-4">
+                <div class = "card mb-4">
                     <div class="card-header"> <i class="fas fa-table me-1"></i> Danh sách đơn hàng </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -105,7 +97,7 @@
                                         <th>Tổng tiền</th>
                                         <th>Trạng thái</th>
                                         <th>Ghi chú</th>
-                                        <th></th>
+                                        <th>Cập nhật</th>
                                     </tr>
                                 </thead>
                                 <tbody> <?php $sql = "SELECT * FROM donhang JOIN trangthai ON donhang.TrangThai = trangthai.trangthai_id ORDER BY Ngay DESC"; if ($result = mysqli_query($link, $sql)) { $count = 0; while ($row = mysqli_fetch_array($result)) { $count++; $class = ($count % 2 == 0) ? 'even' : 'odd'; $temp = $row['TenDangNhap']; $temp2 = $row['google_id'];
@@ -128,11 +120,11 @@
                                     }
                                     ?>
                                     <tr class="<?php echo $class ?>">
-                                        <td><?php echo $row['MaDonHang'] ?></td>
+                                        <td><a href="detaildh.php?id=<?=$row['MaDonHang'] ?>"><?=$row['MaDonHang'] ?></a></td>
                                         <td><?php echo $name ?></td>
                                         <td><?php echo $row['Ngay'] ?></td>
                                         <td><?php echo $dc ?></td>
-                                        <td style="color: red;font-weight: 600;">
+                                        <td style="text-align: right; color: red;font-weight: 600;">
                                             <?php echo number_format($row['TongTien'], 0, ',', '.') . ' VNĐ' ?></td>
                                         <?php
                                         if ($row['ten_trangthai'] == 'Hoàn thành' ) {
@@ -141,9 +133,9 @@
                                         <?php
                                         } else if($row['ten_trangthai'] =='Chờ lấy hàng' ||$row['ten_trangthai'] =='Chờ xác nhận') {
                                             ?>
-                                        <td style="color: blue;"><?php echo $row['ten_trangthai']?></td>
+                                        <td style="color: orange;"><?php echo $row['ten_trangthai']?></td>
                                         <?php
-                                        }else if($row['ten_trangthai'] =='Đang giao hàng') {
+                                        }else if($row['ten_trangthai'] =='Đang giao') {
                                             ?>
                                         <td style="color: orange;"><?php echo $row['ten_trangthai']?></td>
                                         <?php
@@ -153,30 +145,26 @@
                                         <?php } ?>
                                         <td><?php echo $row['GhiChu'] ?></td>
                                         <td style="text-align: center;">
-                                            <form action="donhang.php?id=<?php echo $row["MaDonHang"]; ?>"
+                                            <form class="update" action="donhang.php?id=<?php echo $row["MaDonHang"]; ?>"
                                                 method="post">
-                                                <select name="status">
-                                                    <option value="2">Chờ lấy hàng</option>
-                                                    <option value="3">Đang giao</option>
-                                                    <!-- <option value="4">Hoàn thành</option> -->
-                                                    <option value="5">Đã hủy</option>
-                                                    <option value="6">Trả hàng</option>
-                                                    <option value="7">Từ chối hủy đơn</option>
-                                                    <option value="10">Từ chối trả hàng</option>
-                                                </select>
-                                                <input type="submit" value="Cập nhật" class="btn btn-success">
+                                                <?php if ($row['TrangThai'] == 1 || $row['TrangThai'] == 2 || $row['TrangThai'] == 8 ||$row['TrangThai'] == 9 ) { ?>
+                                                    <select style="display: block; min-width: 50px;" name="status">
+                                                        <?php if ($row['TrangThai'] == 1) { ?>
+                                                            <option value="2">Chờ lấy hàng</option>
+                                                        <?php } elseif ($row['TrangThai'] == 2) { ?>
+                                                            <option value="3">Đang giao</option>
+                                                        <?php } elseif ($row['TrangThai'] == 8) { ?>
+                                                            <option value="5">Duyệt hủy đơn</option>
+                                                            <option value="7">Từ chối hủy đơn</option>
+                                                            <?php } elseif ($row['TrangThai'] == 9) { ?>
+                                                            <option value="6">Duyệt trả hàng</option>
+                                                            <option value="10">Từ chối trả hàng</option>
+                                                        <?php } ?>
+                                                    </select>
+                                                    <input style="display: block;" type="submit" value="Cập nhật" class="btn btn-success">
+                                                <?php } ?>
                                             </form>
                                         </td>
-                                        <td>
-                                        <?php if(isset($_GET['huy']) && isset($_POST['submit'] )){
-                                            $huyid = $_GET['huy'];
-                                            $qr="UPDATE donhang SET TrangThai = 5 WHERE MaDonHang = $huyid"
-                                            ?>
-                                            <form action="" method="post">
-                                            <button class="btn btn-danger" href="" name="submit">Chấp nhận hủy đơn</button>
-                                            </form>
-                                            </td>
-                                            <?php } ?>
                                     </tr> <?php } } ?>
                                 </tbody>
                             </table>
@@ -195,6 +183,13 @@
             td, th{
                 min-width: 50px;
                 font-size: 14px;
+            }
+            .update{
+                display:flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                row-gap: 5px;
             }
             </style>
         </main>
@@ -218,5 +213,4 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
 </body>
-
 </html>

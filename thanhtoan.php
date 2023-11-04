@@ -20,20 +20,22 @@ if (isset($_SESSION['cart'])) {
       $row = $result->fetch_assoc();
       $ggid = $row['google_id'];
       // Thực hiện các xử lý liên quan đến tài khoản Google
+     
       $quey = "INSERT INTO donhang (MaDonHang, Ngay, DiaChi, TongTien, TrangThai, GhiChu, google_id) VALUES ('$madh','$time','$diachi','$tongtien','$trangthai','$ghichu','$ggid')";
-      $query = "INSERT INTO lichsudonhang VALUES ('$madh','$trangthai','$time')";
-      if (mysqli_query($link, $query)) {
-        echo "Lịch sử đơn hàng đã được thêm thành công";
-    } else {
-        echo "Lỗi: " . $query . "<br>" . mysqli_error($link);
-    }
       if (mysqli_query($link, $quey)) {
-        echo "New record created successfully";
+        $query = "INSERT INTO lichsudonhang(MaDonHang, TrangThai, ThoiGian) VALUES ('$madh','$trangthai','$time')";
+        if (mysqli_query($link, $query)) {
+          // INSERT lichsudonhang thành công
+          echo "New record created successfully";
+          // ...
+        } else {
+          echo "Error inserting into lichsudonhang: " . mysqli_error($link);
+        }
         foreach ($_SESSION['cart'] as $item) {
-          $masp = $item['masp'];
+          $opid = $item['opid'];
           $sl = $item['sl'];
           $dongia = $item['gia'];
-          $sql = "INSERT INTO thongtindonhang VALUES('$masp','$madh',$sl,$dongia)";
+          $sql = "INSERT INTO thongtindonhang VALUES('$opid','$madh',$sl,$dongia)";
           if (mysqli_query($link, $sql)) {
             echo "New record created successfully";
           } else {
@@ -56,19 +58,20 @@ if (isset($_SESSION['cart'])) {
         }
       }
       $quey = "INSERT INTO donhang (MaDonHang, Ngay, DiaChi, TongTien, TrangThai, GhiChu, TenDangNhap) VALUES ('$madh','$time','$diachi','$tongtien','$trangthai','$ghichu','$id')";
-      $query = "INSERT INTO lichsudonhang VALUES ('$madh','$trangthai','$time')";
-      if (mysqli_query($link, $query)) {
-        echo "Lịch sử đơn hàng đã được thêm thành công";
-    } else {
-        echo "Lỗi: " . $query . "<br>" . mysqli_error($link);
-    }
       if (mysqli_query($link, $quey)) {
-        echo "New record created successfully";
+        $query = "INSERT INTO lichsudonhang(MaDonHang, TrangThai, ThoiGian) VALUES ('$madh','$trangthai','$time')";
+        if (mysqli_query($link, $query)) {
+          // INSERT lichsudonhang thành công
+          echo "New record created successfully";
+          // ...
+        } else {
+          echo "Error inserting into lichsudonhang: " . mysqli_error($link);
+        }
         foreach ($_SESSION['cart'] as $item) {
-          $masp = $item['masp'];
+          $opid = $item['opid'];
           $sl = $item['sl'];
           $dongia = $item['gia'];
-          $sql = "INSERT INTO thongtindonhang VALUES('$masp','$madh',$sl,$dongia)";
+          $sql = "INSERT INTO thongtindonhang VALUES('$opid','$madh',$sl,$dongia)";
           if (mysqli_query($link, $sql)) {
             echo "New record created successfully";
           } else {

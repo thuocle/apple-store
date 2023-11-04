@@ -2,6 +2,11 @@
 <html lang="en">
 
 <head>
+    <style>
+        td, th {
+            min-width: 150px;
+        }
+    </style>
     <?php include("../admin/assets/title.php");?>
 </head>
 
@@ -23,7 +28,7 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
-                        Thông tin tất cả các sản phẩm
+                        Thông tin các sản phẩm
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -33,8 +38,15 @@
                                     <tr>
                                         <th>Mã sản phẩm</th>
                                         <th>Tên sản phẩm</th>
-                                        <th>Giá bán</th>
-                                        <th>Số lượng</th>
+                                        <th>Dòng sản phẩm</th>
+                                        <th>Kích thước</th>
+                                        <th>Trọng lượng</th>
+                                        <th>Camera</th>
+                                        <th>Sim</th>
+                                        <th>Pin</th>
+                                        <th>Hệ điều hành</th>
+                                        <th>Bảo hành</th>
+                                        <th>Phụ kiện</th>
                                         <th></th>
                                         <th></th>
                                     </tr>
@@ -42,15 +54,22 @@
                                 <tbody>
                                     <?php
               include('../config/db.php');
-              $sql = "SELECT * FROM sanpham";
+              $sql = "SELECT * FROM sanpham JOIN loaisp ON sanpham.MaLoaiSP = loaisp.MaLoaiSP";
               if ($result = mysqli_query($link, $sql)) {
                 while ($row = mysqli_fetch_array($result)) {
               ?>
                                     <tr>
-                                        <td><?php echo $row['MaSanPham'] ?></td>
-                                        <td><?php echo $row['TenSanPham'] ?></td>
-                                        <td><?php echo number_format($row['GiaSanPham'], 0, ',', '.') . ' VNĐ' ?></td>
-                                        <td><?php echo $row['SoLuong'] ?></td>
+                                        <td><?= $row['MaSanPham'] ?>
+                                        <td><?= $row['TenSanPham'] ?>
+                                        <td><?= $row['TenLoaiSP'] ?>
+                                        <td><?= $row['KichThuoc'] ?>
+                                        <td><?= $row['TrongLuong'] ?>
+                                        <td><?= $row['Camera'] ?>
+                                        <td><?= $row['Sim'] ?>
+                                        <td><?= $row['Pin'] ?>
+                                        <td><?= $row['HeDieuHanh'] ?>
+                                        <td><?= $row['BaoHanh'] ?>
+                                        <td><?= $row['PhuKien'] ?>
                                         <td style="text-align: center;">
                                             <a href="addsp.php?id=<?php echo $row['MaSanPham'] ?>"
                                                 class="btn btn-primary">Sửa</a>

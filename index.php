@@ -64,8 +64,8 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8">
-            <h4>Bạn muốn biết thêm thông tin ?</h4>
-            <span>Hãy liên hệ ngay với chúng tôi.</span>
+            <h4>Khám phá ngay gian hàng của chúng tôi</h4>
+            <span>Hãy liên hệ với chúng tôi nếu bạn cần trợ giúp.</span>
           </div>
           <div class="col-md-4">
             <a href="contact.php" class="button-85 border-button">Liên hệ</a>
@@ -73,45 +73,46 @@
         </div>
       </div>
     </div>
-
-    <!-- Sản phẩm nổi bật -->
-    <div class="services services-index">
+               <!-- Sản phẩm nổi bật -->
+               <div class="services services-index">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <div class="section-heading">
-              <h2>iPhone nào phù hợp với bạn?</h2>
-              <span>Chúng tôi sẽ giúp bạn tìm ra sản phẩm tốt nhất.</span>
+            <div class="section-heading" style="margin-bottom: 100px;">
+              <h2>Sản phẩm iPhone nổi bật</h2>
             </div>
-          </div>
+          </div>    
           <?php
               include('./config/db.php');
-              $sql = "SELECT * FROM sanpham WHERE MaLoaiSP = '01' LIMIT 3";
+              $sql = "SELECT * FROM sanpham INNER JOIN optionproduct ON sanpham.MaSanPham = optionproduct.MaSanPham INNER JOIN loaisp ON sanpham.MaLoaiSP = loaisp.MaLoaiSP WHERE loaisp.MaLoaiSP= '01' GROUP BY sanpham.MaSanPham LIMIT 3";
               $result = $link->query($sql);
             
               if ($result->num_rows > 0) {
               // output data of each row
               
-              while($row = $result->fetch_assoc()) {
-                echo '<div class="col-md-4">';
-                echo '<div class="service-item">';
-                echo '<img src="img/'.$row["HinhAnh"].'" alt="" >';
-                echo '<div class="down-content">';
-                echo '<h4>'. $row["TenSanPham"] .'</h4>';
+              while($row = $result->fetch_assoc()) { ?>
+    
+                <div class="col-md-4 tag">
+                <div class="service-item" style="position: relative;">
+                  <img src="./img/hot-product.png" alt="sale-product" style="scale: 0.2;position: absolute;top: -40%; left:0% ">
+                  <img src="./img/sale3.png" alt="sale-product" style="scale: 0.2;position: absolute; top: -28%;left:0% ">
+                  <img src="assets/images/<?=$row["HinhAnh"]?>" alt="" style="height: 150px; width: fit-content;">
+                  <div class="down-content" style="margin-top: -30px; padding-top: 0;">
+                  <h4 class="tag-hot" style="position: relative;"><?=$row["TenSanPham"]?></h4>
+                <?php  
                 echo '<div style="margin-bottom:10px;">';
                 echo '<span>';
-                $gia = $row["GiaSanPham"];
+                $gia = $row["Gia"];
                 $gia_dinh_dang = number_format($gia, 0, ',', '.');
-                echo '<p style="color:green;">Từ '.$gia_dinh_dang.'đ</p>';
+                echo '<p style="color:red; font-size:25px; font-weight:bold;">'.$gia_dinh_dang.'đ</p>';
                 echo ' </span>'; 
                 echo '</div>';
-                //echo '<p>'. $row["Ram"] .' </p>';
-                //echo '<p>'. $row["BoNho"] .' </p>';
                 echo '<a href="product-details.php?masp='. $row["MaSanPham"] .' " class="button-85 border-button">Mua</a>';
                 echo '</div>';
                 echo '</div>';
                 echo '<br>';
-                echo '</div>';
+                echo '</div>'; ?>
+                <?php
               }
             } else {
               echo "0 results";

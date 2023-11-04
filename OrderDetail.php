@@ -85,7 +85,7 @@
                     <thead>
                         <tr class="bg-primary text-white">
                             <th colspan="2">Mã đơn hàng</th>
-                            <th colspan="2">Ngày đặt hàng</th>
+                            <th colspan="4">Ngày đặt hàng</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -93,12 +93,13 @@
             include('./config/db.php');
             if(isset($_GET['id'])){
                 $madh = $_GET['id'];
-                $sql = "SELECT donhang.MaDonHang, donhang.Ngay, donhang.TongTien, donhang.GhiChu,donhang.TrangThai, thongtindonhang.SoLuong, sanpham.TenSanPham, sanpham.HinhAnh, sanpham.GiaSanPham
-                        FROM donhang
-                        INNER JOIN thongtindonhang ON donhang.MaDonHang = thongtindonhang.MaDonHang
-                        INNER JOIN sanpham ON thongtindonhang.MaSanPham = sanpham.MaSanPham
+                $sql = "SELECT donhang.MaDonHang, donhang.Ngay,donhang.TongTien,donhang.GhiChu,thongtindonhang.SoLuong, thongtindonhang.DonGia,donhang.TrangThai, sanpham.HinhAnh, sanpham.TenSanPham, optionproduct.BoNho, optionproduct.MauSac
+                FROM donhang
+                INNER JOIN thongtindonhang ON donhang.MaDonHang = thongtindonhang.MaDonHang
+                INNER JOIN optionproduct ON thongtindonhang.MaSanPham = optionproduct.OPID
+                INNER JOIN sanpham ON sanpham.MaSanPham = optionproduct.MaSanPham
                         WHERE donhang.MaDonHang='$madh'";
-                $sql2 ="SELECT TrangThai, ThoiGian FROM lichsudonhang WHERE MaDonHang='$madh' ORDER BY ThoiGian DESC";
+                $sql2 ="SELECT * FROM lichsudonhang JOIN trangthai ON lichsudonhang.TrangThai = trangthai.trangthai_id  WHERE MaDonHang='$madh' ORDER BY ThoiGian DESC";
                 $result2 = mysqli_query($link, $sql2);
                 $result = mysqli_query($link, $sql);
                 if (!$result) {
@@ -117,8 +118,10 @@
                         <tr class="bg-primary text-white">
                             <th>Hình ảnh</th>
                             <th>Tên Sản Phẩm</th>
+                            <th>Phiên bản</th>
+                            <th>Màu sắc</th>
                             <th>Số lượng</th>
-                            <th>Đơn giá</th>
+                            <th>Thành tiền</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -127,15 +130,21 @@
                         <tr>
                             <td style="text-align: center;"><img src="img/<?php echo $row['HinhAnh'] ?>"></td>
                             <td><?php echo $row['TenSanPham'] ?>
+                            <td><?php echo $row['BoNho'] ?>
+                            <td>
+                            <span style="background-color: <?= $row['MauSac'] ?>; padding: 5px; margin-left: 70px; <?= $row['MauSac'] == 'white' ? 'color: black;' : 'color: white;' ?>">
+                            <?= strtoupper($row['MauSac']) ?>
+                            </span>
+                            </td>
                             <td><?php echo $row['SoLuong'] ?>
-                            <td><?php echo number_format($row['GiaSanPham'], 0, ',', '.') ?>
+                            <td><?php echo number_format($row['DonGia'], 0, ',', '.') ?>
                         </tr>
                         <?php } ?>
                     </tbody>
                     <thead>
                         <tr class="bg-primary text-white">
                             <th colspan="2">Tổng tiền</th>
-                            <th colspan="2">Hình thức thanh toán</th>
+                            <th colspan="4">Hình thức thanh toán</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -324,7 +333,7 @@ mysqli_data_seek($result2, 0);
 while($row = mysqli_fetch_assoc($result2)){
 ?>
             <tr>
-                <td><?php echo $row['TrangThai'] ?></td>
+                <td><?php echo $row['ten_trangthai'] ?></td>
                 <td><?php echo $row['ThoiGian'] ?></td>
             </tr>
             <?php } ?>

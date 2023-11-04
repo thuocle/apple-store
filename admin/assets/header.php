@@ -29,10 +29,6 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Đơn hàng
                             </a>
-                            <a class="nav-link" href="detaildh.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Chi tiết đơn hàng
-                            </a>
                             <a class="nav-link" href="tables.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Sản phẩm
