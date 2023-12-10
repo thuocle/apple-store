@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        th{
+            min-width: 100px !important;
+        }
+    </style>
 <?php
     include('../admin/assets/title.php');
     include('../config/db.php');
@@ -58,7 +63,7 @@
         if ($validStatusChange) {
             $updateStatusQuery = "UPDATE donhang SET TrangThai = $newStatus WHERE MaDonHang = '$orderId'";
             if (mysqli_query($link, $updateStatusQuery)) {
-                themLichSuDonHang($orderId, $htrStatus, $thoiGian);
+                themLichSuDonHang($orderId, $newStatus, $thoiGian);
                 echo "<script type='text/javascript'>alert('Sửa trạng thái thành công'); window.location.href = '../admin/donhang.php';</script>";
                 exit();
             } else {
@@ -91,8 +96,10 @@
                                 <thead>
                                     <tr>
                                         <th>Mã đơn hàng</th>
+                                        <th style="min-width:100px">Ngày lập</th>
                                         <th>Tên khách hàng</th>
-                                        <th>Ngày lập</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Email</th>
                                         <th>Địa chỉ</th>
                                         <th>Tổng tiền</th>
                                         <th>Trạng thái</th>
@@ -121,9 +128,11 @@
                                     ?>
                                     <tr class="<?php echo $class ?>">
                                         <td><a href="detaildh.php?id=<?=$row['MaDonHang'] ?>"><?=$row['MaDonHang'] ?></a></td>
-                                        <td><?php echo $name ?></td>
                                         <td><?php echo $row['Ngay'] ?></td>
-                                        <td><?php echo $dc ?></td>
+                                        <td><?php echo $row['TenKhachHang'] ?></td>
+                                        <td><?php echo $row['SDT'] ?></td>
+                                        <td><?php echo $row['Email'] ?></td>
+                                        <td><?php echo $row['DiaChi'] ?></td>
                                         <td style="text-align: right; color: red;font-weight: 600;">
                                             <?php echo number_format($row['TongTien'], 0, ',', '.') . ' VNĐ' ?></td>
                                         <?php

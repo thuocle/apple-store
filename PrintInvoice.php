@@ -61,6 +61,9 @@
   border: 1px solid #000;
   padding: 20px;
 }
+.d-flex .justify-content-between .align-items-center .justify-content-center .text-center{
+  justify-content: center !important;
+}
     </style>
 </head>
 <body>
@@ -69,17 +72,19 @@
         include('./config/db.php');
         if(isset($_GET['id'])){
             $madh = $_GET['id'];
-            $sql = "SELECT users.HoTen, users.Email, users.SDT, users.DiaChi, donhang.MaDonHang, donhang.Ngay, donhang.TongTien, donhang.GhiChu, thongtindonhang.SoLuong, sanpham.TenSanPham, sanpham.HinhAnh, sanpham.GiaSanPham
+            $sql = "SELECT users.HoTen, users.Email, users.SDT, users.DiaChi, donhang.MaDonHang, donhang.Ngay, donhang.TongTien, donhang.GhiChu, thongtindonhang.SoLuong, sanpham.TenSanPham, sanpham.HinhAnh, optionproduct.Gia
                     FROM users
                     INNER JOIN donhang ON users.TenDangNhap = donhang.TenDangNhap
-                    INNER JOIN thongtindonhang ON donhang.MaDonHang = thongtindonhang.MaDonHang
-                    INNER JOIN sanpham ON thongtindonhang.MaSanPham = sanpham.MaSanPham
+                    INNER JOIN thongtindonhang ON donhang.MaDonHang = thongtindonhang.MaDonHang 
+                    INNER JOIN optionproduct ON thongtindonhang.MaSanPham = optionproduct.OPID 
+                    INNER JOIN sanpham ON optionproduct.MaSanPham = sanpham.MaSanPham
                     WHERE donhang.MaDonHang='$madh'";
-            $sql2 = "SELECT google_name, google_email,google_users.SDT, donhang.DiaChi, donhang.MaDonHang, donhang.Ngay, donhang.TongTien, donhang.GhiChu, thongtindonhang.SoLuong, sanpham.TenSanPham, sanpham.HinhAnh, sanpham.GiaSanPham
+            $sql2 = "SELECT google_name, google_email,google_users.SDT, donhang.DiaChi, donhang.MaDonHang, donhang.Ngay, donhang.TongTien, donhang.GhiChu, thongtindonhang.SoLuong, sanpham.TenSanPham, sanpham.HinhAnh, optionproduct.Gia
                     FROM google_users
                     INNER JOIN donhang ON google_users.google_id = donhang.google_id
                     INNER JOIN thongtindonhang ON donhang.MaDonHang = thongtindonhang.MaDonHang
-                    INNER JOIN sanpham ON thongtindonhang.MaSanPham = sanpham.MaSanPham
+                    INNER JOIN optionproduct ON thongtindonhang.MaSanPham = optionproduct.OPID 
+                    INNER JOIN sanpham ON optionproduct.MaSanPham = sanpham.MaSanPham
                     WHERE donhang.MaDonHang='$madh'";
             $result = mysqli_query($link, $sql);
             $result2 = mysqli_query($link, $sql2);
@@ -92,8 +97,8 @@
                 $row = mysqli_fetch_assoc($result);
         ?>
         <div class="invoice p-3 my-5 shadow">
-        <div class="d-flex justify-content-between align-items-center">
-  <h1 class="h3 font-weight-bold mb-0">HÓA ĐƠN</h1>
+        <div class="d-flex justify-content-between align-items-center text-center">
+          <h1 class="h3 font-weight-bold mb-0">HÓA ĐƠN</h1>
   <button class="btn btn-success d-print-none font-weight-bold" onclick="window.print()">IN HÓA ĐƠN</button>
 </div>
 <hr class="my-4">
@@ -102,9 +107,7 @@
     <p class="font-weight-bold mb-0">Mã đơn hàng:</p>
     <p><?php echo $row['MaDonHang']; ?></p>
     <p class="font-weight-bold mb-0">Ngày đặt hàng:</p>
-    <p><?php echo $row['Ngay']; ?></p>
-    <p class="font-weight-bold mb-0">Tổng tiền:</p>
-    <p><?php echo number_format($row['TongTien'], 0, ',', '.'); ?></p>
+    <p><?= $row['Ngay']=date('d/m/Y'); ?></p>
     <p class="font-weight-bold mb-0">Ghi chú:</p>
     <p><?php echo $row['GhiChu']; ?></p>
   </div>
@@ -136,9 +139,9 @@
                     $total = 0;
                     mysqli_data_seek($result, 0);
                     while($row = mysqli_fetch_assoc($result)){
-                        $item_total = $row['SoLuong'] * $row['GiaSanPham'];
+                        $item_total = $row['SoLuong'] * $row['Gia'];
                         $total += $item_total;
-                        echo '<tr><td>' . $row['TenSanPham'] . '</td><td>' . number_format($row['GiaSanPham'], 0, ',', '.') . '</td><td>' . $row['SoLuong'] . '</td><td><p>Chiếc</p> </td><td>' . number_format($item_total, 0, ',', '.') . '</td></tr>';
+                        echo '<tr><td>' . $row['TenSanPham'] . '</td><td>' . number_format($row['Gia'], 0, ',', '.') . '</td><td>' . $row['SoLuong'] . '</td><td><p>Chiếc</p> </td><td>' . number_format($item_total, 0, ',', '.') . '</td></tr>';
                     }
                     ?>
                 </tbody>
@@ -168,8 +171,6 @@
   <p><?php echo $row['MaDonHang']; ?></p>
   <p class="font-weight-bold mb-0">Ngày đặt hàng:</p>
   <p><?php echo $row['Ngay']; ?></p>
-  <p class="font-weight-bold mb-0">Tổng tiền:</p>
-  <p><?php echo number_format($row['TongTien'], 0, ',', '.'); ?></p>
   <p class="font-weight-bold mb-0">Ghi chú:</p>
   <p><?php echo $row['GhiChu']; ?></p>
 </div>
@@ -201,16 +202,16 @@
                   $total = 0;
                   mysqli_data_seek($result2, 0);
                   while($row = mysqli_fetch_assoc($result2)){
-                      $item_total = $row['SoLuong'] * $row['GiaSanPham'];
+                      $item_total = $row['SoLuong'] * $row['Gia'];
                       $total += $item_total;
-                      echo '<tr><td>' . $row['TenSanPham'] . '</td><td>' . number_format($row['GiaSanPham'], 0, ',', '.') . '</td><td>' . $row['SoLuong'] . '</td><td><p>Chiếc</p> </td><td>' . number_format($item_total, 0, ',', '.') . '</td></tr>';
+                      echo '<tr><td>' . $row['TenSanPham'] . '</td><td>' . number_format($row['Gia'], 0, ',', '.') . '</td><td>' . $row['SoLuong'] . '</td><td><p>Chiếc</p> </td><td>' . number_format($item_total, 0, ',', '.') . '</td></tr>';
                   }
                   ?>
               </tbody>
               <tfoot>
                   <tr>
                       <td colspan="4"><strong>Tổng tiền:</strong></td>
-                      <td><?php echo number_format($total,0, ',', '.'); ?></td>
+                      <td><?=number_format($total,0, ',', '.'); ?></td>
                   </tr>
               </tfoot>
           </table>

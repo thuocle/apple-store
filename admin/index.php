@@ -9,31 +9,40 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
+                        <h1 class="mt-4">Trang chủ</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active">Thống kê dữ liệu bán hàng</li>
                         </ol>
+                        <form id="filterForm" method="POST" action="thongke.php">
+    <label for="start_date">Từ ngày:</label>
+    <input  type="date" id="start_date" name="start_date" style="color:red;border: green solid 2px;">
+
+    <label for="end_date">Đến ngày:</label>
+    <input type="date" id="end_date" name="end_date" style="color:red;border: green solid 2px;">
+
+    <label for="type">Thống kê theo:</label>
+    <select id="type" name="type" style="color:red;border: green solid 2px;">
+        <option value="4">Đơn hàng hoàn thành</option>
+        <option value="6">Đơn hàng hoàn trả</option>
+        <option value="3">Đơn hàng đang giao</option>
+        <option value="5">Đơn hàng đã hủy</option>
+        <option value="1">Số sản phấm bán ra</option>
+        <option value="7">Doanh thu</option>
+        <!-- Thêm các loại sản phẩm khác nếu cần -->
+    </select>
+
+    <input type="submit" value="Lọc" class="btn-success">
+</form>
+
                         <div class="row">
-                           
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-6">
+                            <div class="col-xl">
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-area me-1"></i>
-                                        Area Chart Example
+                                        Thống kê theo ngày
                                     </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        <?php include("../admin/assets/demo/chart-bar.php");?>
-                                        Thống kê doanh thu theo tháng
-                                    </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                                    <?php include("./thongke.php");?>
+                                    <div class="card-body"></div>
                                 </div>
                             </div>
                     </div>

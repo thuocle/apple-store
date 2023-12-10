@@ -33,8 +33,10 @@
     </style>
 </head>
 
-<?php include("header.php"); //session_start()?>
-
+<?php include("header.php"); //session_start()
+     
+?>
+   
 <body>
     <!-- Page Content -->
     <div class="page-heading header-text">

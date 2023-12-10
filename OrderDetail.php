@@ -68,7 +68,8 @@
     }
     </style>
 </head>
-<?php include("header.php"); //session_start()?>
+<?php include("header.php"); //session_start()
+?>
 
 <body>
     <!-- Page Content -->
@@ -172,7 +173,7 @@ if ($row['TrangThai'] == 4) {
             die("Lỗi cập nhật trạng thái: " . mysqli_error($link));
         }
         $row['TrangThai'] = $newStatus; // Cập nhật trạng thái mới
-        themLichSuDonHang($madh, "Yêu cầu trả hàng", $thoiGian);
+        themLichSuDonHang($madh, $newStatus, $thoiGian);
         echo "<script type='text/javascript'>alert('Đã gửi yêu cầu thành công!'); window.location.href = '../apple-store/index.php';</script>";
     }
     // Đơn hàng đã được giao tới và đã được xác nhận nhận hàng
@@ -193,7 +194,7 @@ if ($row['TrangThai'] == 4) {
             die("Lỗi cập nhật trạng thái: " . mysqli_error($link));
         }
         $row['TrangThai'] = $newStatus; // Cập nhật trạng thái mới
-        themLichSuDonHang($madh, "Yêu cầu hủy đơn", $thoiGian);
+        themLichSuDonHang($madh, $newStatus, $thoiGian);
         echo "<script type='text/javascript'>alert('Đã gửi yêu cầu thành công!'); window.location.href = '../apple-store/index.php';</script>";
     }
     ?>
@@ -211,7 +212,7 @@ if ($row['TrangThai'] == 4) {
             die("Lỗi cập nhật trạng thái: " . mysqli_error($link));
         }
         $row['TrangThai'] = $newStatus; // Cập nhật trạng thái mới
-        themLichSuDonHang($madh, "Yêu cầu hủy đơn", $thoiGian);
+        themLichSuDonHang($madh, $newStatus, $thoiGian);
         echo "<script type='text/javascript'>alert('Đã gửi yêu cầu thành công!'); window.location.href = '../apple-store/index.php';</script>";
     }
     ?>
@@ -230,7 +231,7 @@ else if ($row['TrangThai'] == 3) {
             die("Lỗi cập nhật trạng thái: " . mysqli_error($link));
         }
         $row['TrangThai'] = $newStatus; // Cập nhật trạng thái mới
-        themLichSuDonHang($madh, "Giao hàng thành công", $thoiGian);
+        themLichSuDonHang($madh, $newStatus, $thoiGian);
         echo "<script type='text/javascript'>alert('Đã gửi yêu cầu thành công!'); window.location.href = '../apple-store/index.php';</script>";
     }
     ?>
@@ -267,7 +268,7 @@ else if ($row['TrangThai'] == 8) {
             die("Lỗi cập nhật trạng thái: " . mysqli_error($link));
         }
         $row['TrangThai'] = $newStatus; // Cập nhật trạng thái mới
-        themLichSuDonHang($madh, "Tiếp tục giao hàng", $thoiGian);
+        themLichSuDonHang($madh, $newStatus, $thoiGian);
         echo "<script type='text/javascript'>alert('Đã gửi yêu cầu thành công!'); window.location.href = '../apple-store/index.php';</script>";
     }
     ?>
@@ -285,7 +286,7 @@ else if ($row['TrangThai'] == 8) {
             die("Lỗi cập nhật trạng thái: " . mysqli_error($link));
         }
         $row['TrangThai'] = $newStatus; // Cập nhật trạng thái mới
-        themLichSuDonHang($madh, "Chấp nhận không trả hàng", $thoiGian);
+        themLichSuDonHang($madh, $newStatus, $thoiGian);
         echo "<script type='text/javascript'>alert('Đã gửi yêu cầu thành công!'); window.location.href = '../apple-store/index.php';</script>";
     }
     ?>
@@ -303,7 +304,7 @@ else if ($row['TrangThai'] == 8) {
             die("Lỗi cập nhật trạng thái: " . mysqli_error($link));
         }
         $row['TrangThai'] = $newStatus; // Cập nhật trạng thái mới
-        themLichSuDonHang($madh, "Chấp nhận không trả hàng", $thoiGian);
+        themLichSuDonHang($madh, $newStatus, $thoiGian);
         echo "<script type='text/javascript'>alert('Đã gửi yêu cầu thành công!'); window.location.href = '../apple-store/index.php';</script>";
     }
     ?>

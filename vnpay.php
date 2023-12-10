@@ -1,6 +1,4 @@
 <?php session_start();
-if(isset($_SESSION['user']))
-{
 if(isset($_SESSION['cart']))
 {
 $temp = rand(1,10000000);
@@ -14,6 +12,15 @@ foreach($_SESSION['cart'] as $item)
 }
 // $ggname = $_SESSION['user'];
 // $sql = "SELECT * FROM google_users WHERE google_name ='$ggname'";
+// Lưu thông tin đơn hàng vào session
+$_SESSION['order_info'] = [
+    'name' => $_POST['name'],
+    'address' => $_POST['address'],
+    'phone' => $_POST['phone'],
+    'email' => $_POST['email'],
+    // Các thông tin khác của đơn hàng
+];
+
 
 error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -86,10 +93,6 @@ else{
     $_SESSION['mess'] = "Giỏ hàng trống vui lòng thêm sản phẩm";
     header(('Location:../apple-store/products.php'));
   }
-}
-else
-{
-    $_SESSION['mess'] = "Vui lòng đăng nhập để tiếp tục";
-    header(('Location:../apple-store/Login/GoogleLogin.php'));
-}
+
+
 ?>

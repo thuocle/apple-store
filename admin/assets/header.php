@@ -33,6 +33,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Sản phẩm
                             </a>
+                            <a class="nav-link" href="warehouse.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                               Kho hàng
+                            </a>
                             <a class="nav-link" href="category.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Danh mục sản phẩm

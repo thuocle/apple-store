@@ -12,7 +12,7 @@
 
     <link rel="shortcut icon" href="./assets/fonts/apple.ico" type="image/x-icon">
     <script src="./assets/js/app.js" defer></script>
-    <title>Apple Store</title>
+    <title>Apolo Store</title>
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -103,8 +103,8 @@ if(isset($_SESSION['cart']))
         }
         ?>
                             <tr>
-                                <td colspan="4"><b style="padding-left: 60px;margin-top: 30px;">Tổng tiền</b></td>
-                                <td style="width: 200; text-align: center;"><span
+                                <td colspan="6"><b style="padding-left: 60px;margin-top: 30px;">Tổng tiền</b></td>
+                                <td style="width: 200; text-align: center;"><span style="color:green"
                                         class="total-price-all"><b><?php echo number_format($tongtien, 0, ',', '.') ?>
                                             đ</b></span></td>
                             </tr>
@@ -120,10 +120,11 @@ else
                             <a href="ProcessCart.php?xoatatca=1" type="button" class="btn btn-light btn-lg me-2">Xóa tất
                                 cả giỏ hàng</a>
                             <a href="products.php" type="button" class="btn btn-light btn-lg me-2">Tiếp tục mua hàng</a>
-                            <form action="vnpay.php" method="POST">
+                            <a href="orderform.php" type="button" class="btn btn-light btn-lg me-2">Đặt hàng</a>
+                            <!-- <form action="vnpay.php" method="POST">
                                 <input type="submit" class="btn btn-success btn-lg" name="redirect"
-                                    value="Thanh toán" />
-                            </form>
+                                    value="Đặt hàng" />
+                            </form> -->
                         </div>
                     </div>
                 </div>

@@ -89,12 +89,12 @@
     <div class="form-container register-container">
       <form action="../admin/register.php" method="POST">
         <h1>Register</h1>
-        <input type="text" placeholder="Full Name" name="hoten">
-        <input type="text" placeholder="User Name" name="user">
-        <input type="email" placeholder="Email">
-        <input type="text" placeholder="Address">
-        <input type="password" placeholder="Password" name="pass1">
-        <input type="password" placeholder="Confirm Password" name="pass2">
+        <input type="text" placeholder="Full Name" name="hoten" required>
+        <input type="text" placeholder="User Name" name="user" required>
+        <input type="email" placeholder="Email"  name="email" required>
+        <input type="text" placeholder="Address"  name="adress" required>
+        <input type="password" placeholder="Password" name="pass1" required>
+        <input type="password" placeholder="Confirm Password" name="pass2" required>
        
         <button type="submit" name="submit">Register</button>
         <span>or use your account</span>
