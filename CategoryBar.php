@@ -1,32 +1,32 @@
 <div class="scroll-menu-container">
   <div class="scroll-menu">
-    <a href="SearchProduct.php?search=macbook" class="menu-item">
+    <a href="SearchProduct.php?search=xiaomi" class="menu-item">
       <img src="./assets/images/macbook2.png" alt="" class="menu-item-image">
-      <span class="menu-item-title">MacBook</span>
+      <span class="menu-item-title">Xiaomi</span>
     </a>
-    <a href="SearchProduct.php?search=ipad" class="menu-item">
+    <a href="SearchProduct.php?search=samsung" class="menu-item">
       <img src="./assets/images/ipad-pro.png" alt="" class="menu-item-image">
-      <span class="menu-item-title">iPad</span>
+      <span class="menu-item-title">SamSung</span>
     </a>
     <a href="SearchProduct.php?search=iphone" class="menu-item">
       <img src="./assets/images/iphone12.png" alt="" class="menu-item-image">
       <span class="menu-item-title">iPhone</span>
     </a>
-    <a href="SearchProduct.php?search=imac" class="menu-item">
+    <a href="SearchProduct.php?search=poco" class="menu-item">
       <img src="./assets/images/imac.png" alt="" class="menu-item-image">
-      <span class="menu-item-title">iMac</span>
+      <span class="menu-item-title">POCO</span>
     </a>
-    <a href="SearchProduct.php?search=ipad mini" class="menu-item">
+    <a href="SearchProduct.php?search=realme" class="menu-item">
       <img src="./assets/images/ipad-mini.png" alt="" class="menu-item-image">
-      <span class="menu-item-title">iPad mini</span>
+      <span class="menu-item-title">Realme</span>
     </a>
     <a href="SearchProduct.php?search=iphone se" class="menu-item">
       <img src="./assets/images/iphone-se.png" alt="" class="menu-item-image">
       <span class="menu-item-title">iPhone SE</span>
     </a>
-    <a href="SearchProduct.php?search=mac mini" class="menu-item">
+    <a href="SearchProduct.php?search=vivo" class="menu-item">
       <img src="./assets/images/macmini.png" alt="" class="menu-item-image">
-      <span class="menu-item-title">Mac Mini</span>
+      <span class="menu-item-title">VIVO</span>
     </a>
     <a href="SearchProduct.php?search=ipad air" class="menu-item">
       <img src="./assets/images/ipad-air.png" alt="" class="menu-item-image">
@@ -36,9 +36,9 @@
       <img src="./assets/images/iPhone-14-Plus.png" alt="" class="menu-item-image">
       <span class="menu-item-title">iPhone 14</span>
     </a>
-    <a href="SearchProduct.php?search=macbook pro" class="menu-item">
+    <a href="SearchProduct.php?search=oppo" class="menu-item">
       <img src="./assets/images/macbook.png" alt="" class="menu-item-image">
-      <span class="menu-item-title">Mac Pro</span>
+      <span class="menu-item-title">OPPO</span>
     </a>
   </div>
   <style>.scroll-menu-container {

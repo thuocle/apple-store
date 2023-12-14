@@ -191,7 +191,6 @@
             }
             td, th{
                 min-width: 50px;
-                font-size: 14px;
             }
             .update{
                 display:flex;

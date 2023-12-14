@@ -15,34 +15,46 @@
                         </ol>
                         <form id="filterForm" method="POST" action="thongke.php">
     <label for="start_date">Từ ngày:</label>
-    <input  type="date" id="start_date" name="start_date" style="color:red;border: green solid 2px;">
+    <input  type="date" id="start_date" value="2023-01-01" name="start_date" style="color:#1e5735;border: green solid 2px;">
 
     <label for="end_date">Đến ngày:</label>
-    <input type="date" id="end_date" name="end_date" style="color:red;border: green solid 2px;">
+    <input type="date" id="end_date" value="2023-12-01" name="end_date" style="color:#1e5735;border: green solid 2px;">
 
     <label for="type">Thống kê theo:</label>
-    <select id="type" name="type" style="color:red;border: green solid 2px;">
-        <option value="4">Đơn hàng hoàn thành</option>
+    <select id="type" name="type" style="color:#1e5735;border: green solid 2px;">
+        <option value="4" selected>Đơn hàng hoàn thành</option>
         <option value="6">Đơn hàng hoàn trả</option>
         <option value="3">Đơn hàng đang giao</option>
         <option value="5">Đơn hàng đã hủy</option>
-        <option value="1">Số sản phấm bán ra</option>
-        <option value="7">Doanh thu</option>
         <!-- Thêm các loại sản phẩm khác nếu cần -->
     </select>
 
     <input type="submit" value="Lọc" class="btn-success">
 </form>
-
                         <div class="row">
                             <div class="col-xl">
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-area me-1"></i>
-                                        Thống kê theo ngày
+                                        Thống kê đơn hàng
                                     </div>
                                     <?php include("./thongke.php");?>
-                                    <div class="card-body"></div>
+                                    <br>
+                                    <br>
+                                    <hr>
+                                    <form id="filterForm2" method="POST" action="thongke2.php">
+    <label for="start_date">Từ ngày:</label>
+    <input  type="date" id="start_date" value="2023-01-01" name="start_date" style="color:#1e5735;border: green solid 2px;">
+
+    <label for="end_date">Đến ngày:</label>
+    <input type="date" id="end_date" value="2023-12-01" name="end_date" style="color:#1e5735;border: green solid 2px;">
+    <input type="submit" value="Lọc" class="btn-success">
+</form>
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-area me-1"></i>
+                                        Thống kê doanh thu
+                                    </div>
+                                    <?php include("./thongke2.php");?>
                                 </div>
                             </div>
                     </div>

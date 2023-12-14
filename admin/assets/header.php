@@ -39,7 +39,7 @@
                             </a>
                             <a class="nav-link" href="category.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Danh mục sản phẩm
+                                Danh mục thương hiệu
                             </a>
                             <a class="nav-link" href="user.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
